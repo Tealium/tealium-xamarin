@@ -4,7 +4,7 @@
 
 For full documentation, please see the Tealium Learning Community:
 
-https://community.tealiumiq.com/t5/Mobile-Libraries/Tealium-for-Xamarin/ta-p/26454
+https://docs.tealium.com/platforms/xamarin/
 
 ## License
 
