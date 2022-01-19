@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Tealium;
 
 namespace ExampleApp.iOS
 {
@@ -24,7 +25,7 @@ namespace ExampleApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
-            TealiumHelper.GetTealium().TrackView("App Launched");
+            TealiumHelper.GetTealium().Track(new TealiumView("App Launched"));
 
             LoadApplication(new App());
 

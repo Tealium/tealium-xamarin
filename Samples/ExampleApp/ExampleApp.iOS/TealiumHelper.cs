@@ -44,108 +44,28 @@ namespace ExampleApp.iOS
                 // the below two steps are optional, but they demonstrate
                 // how to use remote commands, dispatch validators and event listeners
                 var commands = SetupRemoteCommands();
-                TealiumAdvancedConfig advancedConfig = SetupAdvancedConfig();
 
 
                 //***********************************************************
                 // 3. Final configuration and Tealium instance creation - this is also cross-platform
                 //***********************************************************
 
-                TealiumConfig config = new TealiumConfig(TealiumConsts.InstanceId,
-                                                         TealiumConsts.AccountName,
+                TealiumConfig config = new TealiumConfig(TealiumConsts.AccountName,
                                                          TealiumConsts.ProfileName,
                                                          TealiumConsts.Environment,
-                                                         false,
-                                                         commands,
-                                                         advancedConfig
-                                                         );
+                                                         new List<Dispatchers> {
+                                                             Dispatchers.Collect, Dispatchers.RemoteCommands, Dispatchers.TagManagement
+                                                         },
+                                                         new List<Collectors> {
+                                                             Collectors.AppData
+                                                         });
 
                 var tealium = instanceManager.CreateInstance(config);
-
-               
-
-
-                //***********************************************************
-                // 4. Optionally add data sources - this is cross-platform too
-                //***********************************************************
-
-                SetupDataSources(tealium);
             }
 
             return instanceManager.GetExistingInstance(TealiumConsts.InstanceId);
         }
 
-        static void SetupDataSources(ITealium tealium)
-        {
-            tealium.AddVolatileDataSources(new Dictionary<string, object>(1)
-            {
-                { "VolatileDataTest", "Example volatile value." }
-            });
-
-            tealium.AddPersistentDataSources(new Dictionary<string, object>(1)
-            {
-                { "PersistentDataTest", "Example persistent value." }
-            });
-        }
-
-        static TealiumAdvancedConfig SetupAdvancedConfig()
-        {
-            DelegateDispatchValidator validator = new DelegateDispatchValidator()
-            {
-                ShouldDropDispatchDelegate = (ITealium arg1, IDispatch arg2) =>
-                {
-                    System.Diagnostics.Debug.WriteLine("Inside ShouldDropDispatchDelegate!");
-                    return false;
-                },
-
-                ShouldQueueDispatchDelegate = (ITealium arg1, IDispatch arg2, bool shouldQueue) =>
-                {
-                    System.Diagnostics.Debug.WriteLine("Inside ShouldQueueDispatchDelegate!");
-                    return shouldQueue;
-                }
-            };
-
-            DispatchSentDelegateEventListener sendingListener = new DispatchSentDelegateEventListener()
-            {
-                DispatchSent = (tealium, dispatch) =>
-                {
-                    System.Diagnostics.Debug.WriteLine("Inside DispatchSent!");
-                    dispatch.PutString("KeyAddedBySendListener", "Value added by sending listener.");
-                }
-            };
-
-            DispatchQueuedDelegateEventListener queuingListener = new DispatchQueuedDelegateEventListener()
-            {
-                DispatchQueued = (tealium, dispatch) =>
-                {
-                    System.Diagnostics.Debug.WriteLine("Inside DispatchQueued!");
-                    dispatch.PutString("KeyAddedByQueuedListener", "Value added by queuing listener.");
-                }
-            };
-
-            WebViewReadyDelegateEventListener webViewListener = new WebViewReadyDelegateEventListener()
-            {
-                WebViewReady = (tealium, webView) =>
-                {
-                    System.Diagnostics.Debug.WriteLine("Inside WebViewReady!");
-                }
-            };
-
-            SettingsPublishedDelegateEventListener settingsListener = new SettingsPublishedDelegateEventListener()
-            {
-                SettingsPublished = (tealium) =>
-                {
-                    System.Diagnostics.Debug.WriteLine("Inside SettingsPublished!");
-                }
-            };
-
-            TealiumAdvancedConfig advancedConfig = new TealiumAdvancedConfig(validator,
-                                                                        sendingListener,
-                                                                        queuingListener,
-                                                                        webViewListener,
-                                                                        settingsListener);
-            return advancedConfig;
-        }
 
         static List<IRemoteCommand> SetupRemoteCommands()
         {

@@ -6,10 +6,11 @@ namespace ExampleApp
 {
     public static class TealiumConsts
     {
-        public static readonly string InstanceId = "Tealium_Main";
+        
         public static readonly string AccountName = "tealiummobile";
         public static readonly string ProfileName = "demo";
-        public static readonly string Environment = "dev";
+        public static readonly Tealium.Environment Environment = Tealium.Environment.Dev;
+        public static readonly string InstanceId = TealiumInstanceManager.GetInstanceId(TealiumConsts.AccountName, TealiumConsts.ProfileName, TealiumConsts.Environment);
         public static readonly string RemoteCommandId = "verify";
 
         public static ITealiumInstanceManager InstanceManager 

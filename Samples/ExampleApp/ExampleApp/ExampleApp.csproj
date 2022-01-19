@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.0.0.482510" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Tealium.Xamarin" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="TealiumEnabledPage.cs" />
@@ -16,5 +17,8 @@
     <Reference Include="Tealium.Common">
       <HintPath>..\..\..\Tealium.Common.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Tealium.Xamarin" />
   </ItemGroup>
 </Project>

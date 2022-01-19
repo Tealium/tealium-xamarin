@@ -19,17 +19,18 @@ namespace ExampleApp
 
         void TrackView(object sender, EventArgs e)
         {
-            TealiumConsts.DefaultInstance.TrackView("Main Page");
+            
+            TealiumConsts.DefaultInstance.Track(new TealiumView("Main Page"));
         }
 
         void TrackEvent(object sender, EventArgs e)
         {
-            TealiumConsts.DefaultInstance.TrackEvent("Button Clicked", new Dictionary<String, object>(3)
+            TealiumConsts.DefaultInstance.Track(new TealiumEvent("Button Clicked", new Dictionary<String, object>(3)
             {
                 { "event_category", "Main Page" },
                 { "event_action", "Button Click" },
                 { "event_label", "Track Event" }
-            });
+            }));
         }
 
     }

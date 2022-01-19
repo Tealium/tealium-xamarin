@@ -133,7 +133,7 @@ namespace Tealium
             }
         }
 
-        static public string GetInstanceId(string account, string profile, Environment environment)
+        public static string GetInstanceId(string account, string profile, Environment environment)
         {
             return account + "." + profile + "." + environment.ToString().ToLower();
         }
