@@ -7,7 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-
+using Tealium;
 
 namespace ExampleApp.Droid
 {
@@ -21,7 +21,7 @@ namespace ExampleApp.Droid
 
             base.OnCreate(bundle);
 
-            TealiumHelper.GetTealium(this.Application).TrackView("App Launched");
+            TealiumHelper.GetTealium(this.Application).Track(new TealiumView("App Launched"));
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
