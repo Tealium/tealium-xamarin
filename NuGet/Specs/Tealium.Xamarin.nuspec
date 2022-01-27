@@ -16,9 +16,9 @@
     <!-- Insert within the <metadata> element -->
     <dependencies>
         <group targetFramework="MonoAndroid">
-            <dependency id="Xamarin.Kotlin.StdLib" version="(1.5,2.0]" />
-            <dependency id="Xamarin.KotlinX.Coroutines.Core" version="(1.5,2.0]" />
-            <dependency id="Xamarin.KotlinX.Coroutines.Android" version="(1.5,2.0]" />
+            <dependency id="Xamarin.Kotlin.StdLib" version="[1.5,2.0)" />
+            <dependency id="Xamarin.KotlinX.Coroutines.Core" version="[1.5,2.0)" />
+            <dependency id="Xamarin.KotlinX.Coroutines.Android" version="[1.5,2.0)" />
         </group>
         <!-- <group targetFramework="Xamarin.iOS">
             <dependency id="Tealium.Xamarin.Platform.iOS" version="5.4.4.1" />
