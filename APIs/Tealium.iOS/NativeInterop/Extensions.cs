@@ -210,7 +210,7 @@ namespace Tealium.iOS.NativeInterop.Extensions
                 case (long)TealiumConsentCategoriesWrappers.CookieMatch:
                     return ConsentCategory.CookieMatch;
                 case (long)TealiumConsentCategoriesWrappers.Crm:
-                    return ConsentCategory.CRM; ;
+                    return ConsentCategory.CRM;
                 case (long)TealiumConsentCategoriesWrappers.DisplayAds:
                     return ConsentCategory.DisplayAds;
                 case (long)TealiumConsentCategoriesWrappers.Email:
