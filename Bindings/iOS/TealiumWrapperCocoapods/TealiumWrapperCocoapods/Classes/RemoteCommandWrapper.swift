@@ -12,7 +12,7 @@ import TealiumSwift
 @objc(RemoteCommandTypeWrapper)
 open class RemoteCommandTypeWrapper: NSObject {
     
-    let type: RemoteCommandType
+    public let type: RemoteCommandType
     @objc public let typeString: String
     @objc override public init() {
         type = .webview
