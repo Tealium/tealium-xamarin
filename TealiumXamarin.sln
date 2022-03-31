@@ -31,9 +31,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RemoteCommands", "RemoteCom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TealiumFirebase.iOS", "RemoteCommands\TealiumFirebase.iOS\TealiumFirebase.iOS.csproj", "{002A48C5-CC74-4035-A08C-61CD57493615}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TealiumFirebase.Android", "RemoteCommands\TealiumFirebase.Android\TealiumFirebase.Android.csproj", "{C7328F04-8B36-4805-9F11-4ED60F0BFF66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TealiumFirebase.Droid", "RemoteCommands\TealiumFirebase.Droid\TealiumFirebase.Droid.csproj", "{C7328F04-8B36-4805-9F11-4ED60F0BFF66}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TealiumFirebase.Common", "RemoteCommands\TealiumFirebase.Common\TealiumFirebase.Common.shproj", "{11FB91C7-D569-4C6B-BBD7-EA5631C19963}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TealiumFirebase.Platform.iOS", "RemoteCommands\TealiumFirebase.Platform.iOS\TealiumFirebase.Platform.iOS.csproj", "{EE377E05-C01A-4495-82A2-5424A71A0504}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -189,6 +191,18 @@ Global
 		{C7328F04-8B36-4805-9F11-4ED60F0BFF66}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{C7328F04-8B36-4805-9F11-4ED60F0BFF66}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{C7328F04-8B36-4805-9F11-4ED60F0BFF66}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Release|iPhone.Build.0 = Release|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{EE377E05-C01A-4495-82A2-5424A71A0504}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{18E57B5C-52CD-439A-ACF8-9ABBB2110037} = {89AF9C0E-7CE6-4FDD-A378-41C942437C58}
@@ -202,6 +216,7 @@ Global
 		{002A48C5-CC74-4035-A08C-61CD57493615} = {E7F19246-9869-486E-9907-61BDE59762A3}
 		{C7328F04-8B36-4805-9F11-4ED60F0BFF66} = {E7F19246-9869-486E-9907-61BDE59762A3}
 		{11FB91C7-D569-4C6B-BBD7-EA5631C19963} = {E7F19246-9869-486E-9907-61BDE59762A3}
+		{EE377E05-C01A-4495-82A2-5424A71A0504} = {E7F19246-9869-486E-9907-61BDE59762A3}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		version = 2.0.0
