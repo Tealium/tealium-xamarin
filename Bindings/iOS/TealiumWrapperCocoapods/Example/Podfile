@@ -6,6 +6,7 @@ target 'TealiumWrapperSample' do
   use_frameworks!
 
   pod 'TealiumWrapperCocoapods', :path => '../'
+  pod 'TealiumFirebaseWrapper', :path => '../'
 
 end
 

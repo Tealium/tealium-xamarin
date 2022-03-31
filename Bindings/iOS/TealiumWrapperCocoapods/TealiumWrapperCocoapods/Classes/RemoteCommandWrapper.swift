@@ -33,7 +33,7 @@ open class RemoteCommandTypeWrapper: NSObject {
 @objc(RemoteCommandResponseWrapper)
 public class RemoteCommandResponseWrapper: NSObject {
     
-    var response: RemoteCommandResponseProtocol
+    public var response: RemoteCommandResponseProtocol
     init(response: RemoteCommandResponseProtocol) {
         self.response = response
     }
