@@ -51,11 +51,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FirebaseRemoteCommandsFactoryIOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="..\TealiumFirebase.Common\TealiumFirebase.Shared.projitems" Label="Shared" Condition="Exists('..\TealiumFirebase.Common\TealiumFirebase.Shared.projitems')" />
+  <ItemGroup>
+    <ProjectReference Include="..\TealiumFirebase.Platform.iOS\TealiumFirebase.Platform.iOS.csproj">
+      <Project>{EE377E05-C01A-4495-82A2-5424A71A0504}</Project>
+      <Name>TealiumFirebase.Platform.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TealiumFirebase.Common\TealiumFirebase.Common.csproj">
+      <Project>{228866E1-EE76-42A1-A9E1-516235B27FE8}</Project>
+      <Name>TealiumFirebase.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\APIs\Tealium.iOS\Tealium.iOS.csproj">
+      <Project>{8A166DAE-1359-48FE-A3AA-A960CF61DD8E}</Project>
+      <Name>Tealium.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\APIs\Tealium.Platform.iOS\Tealium.Platform.iOS.csproj">
+      <Project>{EB758981-90C4-4B17-836D-3E242FE6D432}</Project>
+      <Name>Tealium.Platform.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\APIs\Tealium.Common\Tealium.Common.csproj">
+      <Project>{3376C602-7D67-4D03-A3E3-80349C33CBD4}</Project>
+      <Name>Tealium.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.targets')" />
 </Project>

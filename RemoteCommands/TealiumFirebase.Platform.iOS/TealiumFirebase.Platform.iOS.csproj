@@ -44,7 +44,16 @@
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingCoreSource Include="Structs.cs" />
+    <ProjectReference Include="..\..\APIs\Tealium.Platform.iOS\Tealium.Platform.iOS.csproj">
+      <Project>{EB758981-90C4-4B17-836D-3E242FE6D432}</Project>
+      <Name>Tealium.Platform.iOS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="Release-fat\TealiumFirebaseWrapper.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>

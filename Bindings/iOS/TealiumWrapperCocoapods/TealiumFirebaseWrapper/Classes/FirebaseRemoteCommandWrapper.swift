@@ -1,7 +1,8 @@
 import TealiumWrapperCocoapods
 import TealiumFirebase
 
-@objc public class FirebaseRemoteCommandWrapper: RemoteCommandWrapper {
+@objc(FirebaseRemoteCommandWrapper)
+public class FirebaseRemoteCommandWrapper: RemoteCommandWrapper {
     
     let command: FirebaseRemoteCommand
     @objc public init(type: RemoteCommandTypeWrapper) {
