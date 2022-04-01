@@ -1,47 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.props" Condition="Exists('..\..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.props')" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{002A48C5-CC74-4035-A08C-61CD57493615}</ProjectGuid>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2BCEB2D0-6F7D-44E1-8535-A5CB7EDF0255}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{a52b8a63-bc84-4b47-910d-692533484892}</TemplateGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>TealiumFirebase</RootNamespace>
-    <AssemblyName>TealiumFirebase</AssemblyName>
+    <RootNamespace>TealiumFirebase.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <ReleaseVersion>2.0.0</ReleaseVersion>
+    <AssemblyName>TealiumFirebase.iOS</AssemblyName>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchDebug>true</MtouchDebug>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchFastDev>true</MtouchFastDev>
-    <IOSDebuggerPort>55586</IOSDebuggerPort>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <DeviceSpecificBuild>false</DeviceSpecificBuild>
-    <MtouchVerbosity></MtouchVerbosity>
-    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <MtouchVerbosity></MtouchVerbosity>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -50,24 +37,16 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FirebaseRemoteCommandsFactoryIOS.cs" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="FirebaseRemoteCommandsFactoryIOS.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TealiumFirebase.Platform.iOS\TealiumFirebase.Platform.iOS.csproj">
-      <Project>{EE377E05-C01A-4495-82A2-5424A71A0504}</Project>
+      <Project>{2D49C778-1FB0-4175-A652-20ED9BB9EE0C}</Project>
       <Name>TealiumFirebase.Platform.iOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TealiumFirebase.Common\TealiumFirebase.Common.csproj">
-      <Project>{228866E1-EE76-42A1-A9E1-516235B27FE8}</Project>
-      <Name>TealiumFirebase.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\APIs\Tealium.iOS\Tealium.iOS.csproj">
-      <Project>{8A166DAE-1359-48FE-A3AA-A960CF61DD8E}</Project>
-      <Name>Tealium.iOS</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\APIs\Tealium.Platform.iOS\Tealium.Platform.iOS.csproj">
       <Project>{EB758981-90C4-4B17-836D-3E242FE6D432}</Project>
@@ -77,7 +56,10 @@
       <Project>{3376C602-7D67-4D03-A3E3-80349C33CBD4}</Project>
       <Name>Tealium.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TealiumFirebase.Common\TealiumFirebase.Common.csproj">
+      <Project>{228866E1-EE76-42A1-A9E1-516235B27FE8}</Project>
+      <Name>TealiumFirebase.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <Import Project="..\..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.targets')" />
 </Project>

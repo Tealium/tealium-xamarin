@@ -4,12 +4,12 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{EE377E05-C01A-4495-82A2-5424A71A0504}</ProjectGuid>
+    <ProjectGuid>{2D49C778-1FB0-4175-A652-20ED9BB9EE0C}</ProjectGuid>
     <TemplateGuid>{b6f3ff35-79b2-4f25-a2fc-60a7cf61013b}</TemplateGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>NativeLibrary</RootNamespace>
+    <RootNamespace>TealiumFirebase.Platform.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>NativeLibrary</AssemblyName>
+    <AssemblyName>TealiumFirebase.Platform.iOS</AssemblyName>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\APIs\Tealium.Platform.iOS\Tealium.Platform.iOS.csproj">
