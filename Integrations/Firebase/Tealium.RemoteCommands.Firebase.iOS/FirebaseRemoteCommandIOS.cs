@@ -132,6 +132,15 @@ namespace Tealium.RemoteCommands.Firebase.iOS
 
         protected override void Configure(int? sessionTimeoutDuration, int? minSessionDuration, bool? analyticsEnabled)
         {
+            if (sessionTimeoutDuration.HasValue)
+            {
+                Analytics.SetSessionTimeoutInterval(sessionTimeoutDuration.Value);
+            }
+            if (analyticsEnabled.HasValue)
+            {
+                Analytics.SetAnalyticsCollectionEnabled(analyticsEnabled.Value);
+            }
+            
             if (App.DefaultInstance == null)
             {
                 //Can't call configure more than once... errors.
