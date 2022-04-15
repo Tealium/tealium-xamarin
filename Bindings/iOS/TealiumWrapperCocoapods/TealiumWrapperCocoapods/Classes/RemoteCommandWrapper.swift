@@ -12,8 +12,20 @@ import TealiumSwift
 @objc(RemoteCommandTypeWrapper)
 open class RemoteCommandTypeWrapper: NSObject {
     
-    let type: RemoteCommandType
+    public let type: RemoteCommandType
     @objc public let typeString: String
+    @objc public var url: String? {
+        if case .remote(let url) = type {
+            return url
+        }
+        return nil
+    }
+    @objc public var path: String? {
+        if case .local(let path, _) = type {
+            return path
+        }
+        return nil
+    }
     @objc override public init() {
         type = .webview
         typeString = "webview"

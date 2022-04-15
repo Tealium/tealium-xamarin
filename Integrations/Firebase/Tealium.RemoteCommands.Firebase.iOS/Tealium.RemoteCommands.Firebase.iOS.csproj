@@ -11,6 +11,7 @@
     <RootNamespace>Tealium.RemoteCommands.Firebase</RootNamespace>
     <AssemblyName>Tealium.RemoteCommands.Firebase</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <ReleaseVersion>2.0.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -79,6 +80,10 @@
     <ProjectReference Include="..\..\..\APIs\Tealium.iOS\Tealium.iOS.csproj">
       <Project>{8A166DAE-1359-48FE-A3AA-A960CF61DD8E}</Project>
       <Name>Tealium.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\APIs\Tealium.Platform.iOS\Tealium.Platform.iOS.csproj">
+      <Project>{EB758981-90C4-4B17-836D-3E242FE6D432}</Project>
+      <Name>Tealium.Platform.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems" Label="Shared" Condition="Exists('..\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems')" />

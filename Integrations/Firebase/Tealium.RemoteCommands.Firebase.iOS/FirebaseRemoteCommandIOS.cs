@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Tealium;
+using Tealium.Platform.iOS;
 
 using Firebase.Analytics;
 using Firebase.Core;
@@ -13,9 +14,11 @@ namespace Tealium.RemoteCommands.Firebase.iOS
         //private static AnalyticsConfiguration fireAnalyticsConfig;
         private static Configuration fireConfig = Configuration.SharedInstance;
 
-        public override string Path => throw new NotImplementedException();
+        private RemoteCommandTypeWrapper type;
 
-        public override string Url => throw new NotImplementedException();
+        public override string Path => type.Path;
+
+        public override string Url => type.Url;
 
         static FirebaseRemoteCommandIOS()
         {
@@ -122,8 +125,9 @@ namespace Tealium.RemoteCommands.Firebase.iOS
         }
 
 
-        public FirebaseRemoteCommandIOS() : base()
+        public FirebaseRemoteCommandIOS(RemoteCommandTypeWrapper type) : base()
         {
+            this.type = type;
         }
 
         protected override void Configure(int? sessionTimeoutDuration, int? minSessionDuration, bool? analyticsEnabled)

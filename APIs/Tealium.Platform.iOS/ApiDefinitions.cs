@@ -152,6 +152,14 @@ namespace Tealium.Platform.iOS
 		[Export ("typeString")]
 		string TypeString { get; }
 
+		// @property (readonly, copy, nonatomic) NSString * _Nullable url;
+		[NullAllowed, Export ("url")]
+		string Url { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable path;
+		[NullAllowed, Export ("path")]
+		string Path { get; }
+
 		// -(instancetype _Nonnull)initWithUrl:(NSString * _Nonnull)url __attribute__((objc_designated_initializer));
 		[Export ("initWithUrl:")]
 		[DesignatedInitializer]

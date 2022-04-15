@@ -50,8 +50,8 @@ namespace Tealium.RemoteCommands.Firebase
         /// <param name="description">Description.</param>
         public FirebaseRemoteCommand(string commandId, string description)
         {
-            this.CommandId = commandId ?? DefaultCommandId;
-            this.Description = description ?? DefaultCommandDesc;
+            CommandId = commandId ?? DefaultCommandId;
+            Description = description ?? DefaultCommandDesc;
         }
 
         public string CommandId { get; set; }
@@ -70,7 +70,7 @@ namespace Tealium.RemoteCommands.Firebase
         /// <param name="response">Response.</param>
         public void HandleResponse(IRemoteCommandResponse response)
         {
-            String command = response.Payload.GetValueForKey<String>(KeyCommandName);
+            String command = response.Payload.GetValueForKey<string>(KeyCommandName);
             if (String.IsNullOrEmpty(command))
             {
                 return;
@@ -93,7 +93,7 @@ namespace Tealium.RemoteCommands.Firebase
                             try
                             {
                                 timeout = response.Payload.ContainsKey(KeySessionTimeout) == true ?
-                                            (int?)Int32.Parse(response.Payload.GetValueForKey<String>(KeySessionTimeout)) * 1000 : null;
+                                            (int?)int.Parse(response.Payload.GetValueForKey<string>(KeySessionTimeout)) * 1000 : null;
                             }
                             catch { }
 
@@ -101,15 +101,15 @@ namespace Tealium.RemoteCommands.Firebase
                             try
                             {
                                 minSeconds = response.Payload.ContainsKey(KeyMinSeconds) == true ?
-                                            (int?)Int32.Parse(response.Payload.GetValueForKey<String>(KeyMinSeconds)) * 1000 : null;
+                                            (int?)int.Parse(response.Payload.GetValueForKey<string>(KeyMinSeconds)) * 1000 : null;
                             }
                             catch { }
 
                             bool? analyticsEnabled = null;
                             try
                             {
-                                analyticsEnabled = response.Payload.GetValueForKey<String>(KeyAnalyticsEnabled) != null && response.Payload.GetValueForKey<String>(KeyAnalyticsEnabled) == "false" ?
-                                            (bool?)false : true;
+                                analyticsEnabled = response.Payload.GetValueForKey<string>(KeyAnalyticsEnabled) != null && response.Payload.GetValueForKey<string>(KeyAnalyticsEnabled) == "false" ?
+                                            false : true;
                             }
                             catch { }
 
@@ -117,7 +117,7 @@ namespace Tealium.RemoteCommands.Firebase
 
                             break;
                         case Commands.LogEvent:
-                            String eventName = response.Payload.GetValueForKey<String>(KeyEventName);
+                            string eventName = response.Payload.GetValueForKey<string>(KeyEventName);
 
                             Dictionary<string, string> eventParams;
                             if (response.Payload.ContainsKey(KeyEventParams))
@@ -143,23 +143,23 @@ namespace Tealium.RemoteCommands.Firebase
                             }
                             break;
                         case Commands.SetScreenName:
-                            String screenName = response.Payload.GetValueForKey<String>(KeyScreenName);
-                            String screenClass = response.Payload.GetValueForKey<String>(KeyScreenClass);
+                            string screenName = response.Payload.GetValueForKey<string>(KeyScreenName);
+                            string screenClass = response.Payload.GetValueForKey<string>(KeyScreenClass);
                             if (!IsNullOrNullString(screenName) && !IsNullOrNullString(screenClass))
                             {
                                 SetScreenName(screenName, screenClass);
                             }
                             break;
                         case Commands.SetUserProperty:
-                            String propertyName = response.Payload.GetValueForKey<String>(KeyUserPropertyName);
-                            String propertyValue = response.Payload.GetValueForKey<String>(KeyUserPropertyValue);
+                            string propertyName = response.Payload.GetValueForKey<string>(KeyUserPropertyName);
+                            string propertyValue = response.Payload.GetValueForKey<string>(KeyUserPropertyValue);
                             if (!IsNullOrNullString(propertyName) && !IsNullOrNullString(propertyValue))
                             {
                                 SetUserProperty(propertyName, propertyValue);
                             }
                             break;
                         case Commands.SetUserId:
-                            String userId = response.Payload.GetValueForKey<String>(KeyUserId);
+                            string userId = response.Payload.GetValueForKey<string>(KeyUserId);
                             if (!IsNullOrNullString(userId))
                             {
                                 SetUserId(userId);
@@ -183,7 +183,7 @@ namespace Tealium.RemoteCommands.Firebase
         /// </summary>
         /// <returns>The known even name, or provided event name</returns>
         /// <param name="eventName">Event name.</param>
-        protected static String mapEventNames(String eventName)
+        protected static string mapEventNames(string eventName)
         {
             return eventsMap[eventName] ?? eventName;
         }
@@ -194,7 +194,7 @@ namespace Tealium.RemoteCommands.Firebase
         /// </summary>
         /// <returns>The known parameter name, or provided param name.</returns>
         /// <param name="param">Parameter.</param>
-        protected static String mapParams(String param)
+        protected static string mapParams(string param)
         {
             return parameters[param] ?? param;
         }
@@ -228,14 +228,14 @@ namespace Tealium.RemoteCommands.Firebase
         /// </summary>
         /// <param name="eventName">Event name.</param>
         /// <param name="eventParams">Event parameters.</param>
-        protected abstract void LogEvent(String eventName, Dictionary<String, String> eventParams);
+        protected abstract void LogEvent(string eventName, Dictionary<string, string> eventParams);
 
         /// <summary>
         /// Sets the <paramref name="screenName"/> and <paramref name="screenClass"/>.
         /// </summary>
         /// <param name="screenName">Screen name.</param>
         /// <param name="screenClass">Screen class.</param>
-        protected abstract void SetScreenName(String screenName, String screenClass);
+        protected abstract void SetScreenName(string screenName, string screenClass);
 
         /// <summary>
         /// Sets a property on the existing User, given by the supplied 
@@ -243,13 +243,13 @@ namespace Tealium.RemoteCommands.Firebase
         /// </summary>
         /// <param name="propertyName">Property name.</param>
         /// <param name="propertyValue">Property value.</param>
-        protected abstract void SetUserProperty(String propertyName, String propertyValue);
+        protected abstract void SetUserProperty(string propertyName, string propertyValue);
 
         /// <summary>
         /// Sets the current user identifier.
         /// </summary>
         /// <param name="userId">User identifier.</param>
-        protected abstract void SetUserId(String userId);
+        protected abstract void SetUserId(string userId);
 
         public void Dispose()
         {
@@ -262,11 +262,11 @@ namespace Tealium.RemoteCommands.Firebase
         /// </summary>
         public static class Commands
         {
-            public const String Config = "config";
-            public const String SetUserId = "setUserId";
-            public const String SetUserProperty = "setUserProperty";
-            public const String SetScreenName = "setScreenName";
-            public const String LogEvent = "logEvent";
+            public const string Config = "config";
+            public const string SetUserId = "setUserId";
+            public const string SetUserProperty = "setUserProperty";
+            public const string SetScreenName = "setScreenName";
+            public const string LogEvent = "logEvent";
         }
 
     }
