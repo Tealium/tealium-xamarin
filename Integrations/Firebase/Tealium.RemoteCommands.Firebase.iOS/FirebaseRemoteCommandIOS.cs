@@ -22,11 +22,12 @@ namespace Tealium.RemoteCommands.Firebase.iOS
 
         static FirebaseRemoteCommandIOS()
         {
+            eventsMap.Add("event_ad_impression", EventNamesConstants.AdImpression);
             eventsMap.Add("event_add_payment_info", EventNamesConstants.AddPaymentInfo);
             eventsMap.Add("event_add_shipping_info", EventNamesConstants.AddShippingInfo);
-            eventsMap.Add("add_to_cart", EventNamesConstants.AddToCart);
-            eventsMap.Add("add_to_wishlist", EventNamesConstants.AddToWishlist);
-            eventsMap.Add("app_open", EventNamesConstants.AppOpen);
+            eventsMap.Add("event_add_to_cart", EventNamesConstants.AddToCart);
+            eventsMap.Add("event_add_to_wishlist", EventNamesConstants.AddToWishlist);
+            eventsMap.Add("event_app_open", EventNamesConstants.AppOpen);
             eventsMap.Add("event_begin_checkout", EventNamesConstants.BeginCheckout);
             eventsMap.Add("event_campaign_details", EventNamesConstants.CampaignDetails);
             eventsMap.Add("event_checkout_progress", EventNamesConstants.CheckoutProgress);
@@ -40,11 +41,11 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             eventsMap.Add("event_login", EventNamesConstants.Login);
             eventsMap.Add("event_post_score", EventNamesConstants.PostScore);
             eventsMap.Add("event_present_offer", EventNamesConstants.PresentOffer);
-            eventsMap.Add("event_ecommerce_purchase", EventNamesConstants.EcommercePurchase);
             eventsMap.Add("event_purchase", EventNamesConstants.Purchase);
             eventsMap.Add("event_purchase_refund", EventNamesConstants.PurchaseRefund);
             eventsMap.Add("event_refund", EventNamesConstants.Refund);
             eventsMap.Add("event_remove_cart", EventNamesConstants.RemoveFromCart);
+            eventsMap.Add("event_screen_view", EventNamesConstants.ScreenView);
             eventsMap.Add("event_search", EventNamesConstants.Search);
             eventsMap.Add("event_select_content", EventNamesConstants.SelectContent);
             eventsMap.Add("event_select_item", EventNamesConstants.SelectItem);
@@ -56,13 +57,19 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             eventsMap.Add("event_tutorial_begin", EventNamesConstants.TutorialBegin);
             eventsMap.Add("event_tutorial_complete", EventNamesConstants.TutorialComplete);
             eventsMap.Add("event_unlock_achievement", EventNamesConstants.UnlockAchievement);
+            eventsMap.Add("event_view_cart", EventNamesConstants.ViewCart);
             eventsMap.Add("event_view_item", EventNamesConstants.ViewItem);
             eventsMap.Add("event_view_item_list", EventNamesConstants.ViewItemList);
+            eventsMap.Add("event_view_promotion", EventNamesConstants.ViewPromotion);
             eventsMap.Add("event_view_search_results", EventNamesConstants.ViewSearchResults);
 
 
             parameters.Add("param_achievement_id", ParameterNamesConstants.AchievementId);
+            parameters.Add("param_ad_format", ParameterNamesConstants.AdFormat);
             parameters.Add("param_ad_network_click_id", ParameterNamesConstants.AdNetworkClickId);
+            parameters.Add("param_ad_platform", ParameterNamesConstants.AdPlatform);
+            parameters.Add("param_ad_source", ParameterNamesConstants.AdSource);
+            parameters.Add("param_ad_unit_name", ParameterNamesConstants.AdUnitName);
             parameters.Add("param_affiliation", ParameterNamesConstants.Affiliation);
             parameters.Add("param_cp1", ParameterNamesConstants.Cp1);
             parameters.Add("param_campaign", ParameterNamesConstants.Campaign);
@@ -84,6 +91,10 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             parameters.Add("param_index", ParameterNamesConstants.Index);
             parameters.Add("param_item_brand", ParameterNamesConstants.ItemBrand);
             parameters.Add("param_item_category", ParameterNamesConstants.ItemCategory);
+            parameters.Add("param_item_category2", ParameterNamesConstants.ItemCategory2);
+            parameters.Add("param_item_category3", ParameterNamesConstants.ItemCategory3);
+            parameters.Add("param_item_category4", ParameterNamesConstants.ItemCategory4);
+            parameters.Add("param_item_category5", ParameterNamesConstants.ItemCategory5);
             parameters.Add("param_item_id", ParameterNamesConstants.ItemId);
             parameters.Add("param_item_list", ParameterNamesConstants.ItemList);
             parameters.Add("param_item_list_id", ParameterNamesConstants.ItemListId);
@@ -91,6 +102,7 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             parameters.Add("param_item_location_id", ParameterNamesConstants.ItemLocationId);
             parameters.Add("param_item_name", ParameterNamesConstants.ItemName);
             parameters.Add("param_item_variant", ParameterNamesConstants.ItemVariant);
+            parameters.Add("param_items", ParameterNamesConstants.Items);
             parameters.Add("param_level", ParameterNamesConstants.Level);
             parameters.Add("param_level_name", ParameterNamesConstants.LevelName);
             parameters.Add("param_location", ParameterNamesConstants.Location);
@@ -107,6 +119,8 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             parameters.Add("param_promotion_name", ParameterNamesConstants.PromotionName);
             parameters.Add("param_quantity", ParameterNamesConstants.Quantity);
             parameters.Add("param_score", ParameterNamesConstants.Score);
+            parameters.Add("param_screen_name", ParameterNamesConstants.ScreenName);
+            parameters.Add("param_screen_class", ParameterNamesConstants.ScreenClass);
             parameters.Add("param_search_term", ParameterNamesConstants.SearchTerm);
             parameters.Add("param_shipping", ParameterNamesConstants.Shipping);
             parameters.Add("param_shipping_tier", ParameterNamesConstants.ShippingTier);
@@ -121,7 +135,7 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             parameters.Add("param_value", ParameterNamesConstants.Value);
             parameters.Add("param_virtual_currency_name", ParameterNamesConstants.VirtualCurrencyName);
             parameters.Add("param_user_signup_method", UserPropertyNamesConstants.SignUpMethod);
-
+			parameters.Add("param_user_allow_ad_personalization_signals", UserPropertyNamesConstants.AllowAdPersonalizationSignals);
         }
 
 
