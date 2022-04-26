@@ -184,6 +184,14 @@ namespace Tealium.Platform.iOS
 		[NullAllowed, Export ("commandDescription")]
 		string CommandDescription { get; set; }
 
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull name;
+		[Export ("name")]
+		string Name { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable version;
+		[NullAllowed, Export ("version")]
+		string Version { get; }
+
 		// @property (copy, nonatomic) void (^ _Nonnull)(RemoteCommandResponseWrapper * _Nonnull) completion;
 		[Export ("completion", ArgumentSemantic.Copy)]
 		Action<RemoteCommandResponseWrapper> Completion { get; set; }

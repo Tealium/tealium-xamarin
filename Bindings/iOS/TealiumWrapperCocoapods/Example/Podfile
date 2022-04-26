@@ -6,6 +6,7 @@ target 'TealiumWrapperSample' do
   use_frameworks!
 
   pod 'TealiumWrapperCocoapods', :path => '../'
+  pod 'tealium-swift', :git => 'https://github.com/tealium/tealium-swift.git', :branch => 'remoteCommandsFix'
 
 end
 
@@ -16,7 +17,8 @@ target 'TealiumWrapperCocoapods_Tests' do
   use_frameworks!
 
   pod 'TealiumWrapperCocoapods', :path => '../'
-
+  pod 'tealium-swift', :git => 'https://github.com/tealium/tealium-swift.git', :branch => 'remoteCommandsFix'
+  
 end
 
 post_install do |installer|

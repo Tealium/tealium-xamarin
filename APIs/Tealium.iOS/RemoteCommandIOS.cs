@@ -18,7 +18,6 @@ namespace Tealium.iOS
                         new RemoteCommandTypeWrapper(command.Path, Foundation.NSBundle.MainBundle) : new RemoteCommandTypeWrapper()
                   )
         {
-
             this.command = command;
         }
 

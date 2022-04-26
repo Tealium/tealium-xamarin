@@ -15,8 +15,12 @@ namespace Tealium.RemoteCommands.Firebase
         public static readonly string KeyLogLevel = "firebase_log_level";
         public static readonly string KeyEventName = "firebase_event_name";
         public static readonly string KeyEventParams = "firebase_event_params";
+
+        // deprecated
         public static readonly string KeyScreenName = "firebase_screen_name";
+        // deprecated
         public static readonly string KeyScreenClass = "firebase_screen_class";
+
         public static readonly string KeyUserPropertyName = "firebase_property_name";
         public static readonly string KeyUserPropertyValue = "firebase_property_value";
         public static readonly string KeyUserId = "firebase_user_id";
@@ -61,6 +65,10 @@ namespace Tealium.RemoteCommands.Firebase
         public abstract string Path { get; }
         public abstract string Url { get; }
 
+        string IRemoteCommand.Name => "xamarin-"+CommandId;
+
+        string IRemoteCommand.Version => "1.0.0";
+
         /// <summary>
         /// Handles the Remote Command response - this contains all the logic 
         /// for executing the different functions Firebase Analytics.
@@ -70,13 +78,13 @@ namespace Tealium.RemoteCommands.Firebase
         /// <param name="response">Response.</param>
         public void HandleResponse(IRemoteCommandResponse response)
         {
-            String command = response.Payload.GetValueForKey<string>(KeyCommandName);
-            if (String.IsNullOrEmpty(command))
+            string command = response.Payload.GetValueForKey<string>(KeyCommandName);
+            if (string.IsNullOrEmpty(command))
             {
                 return;
             }
 
-            String[] commandArray;
+            string[] commandArray;
             // split the commands into an array
             commandArray = command.Split(",");
 
