@@ -15,8 +15,9 @@ namespace Tealium.iOS
             : this(command.CommandId,
                   command.Description,
                   (command.Url != null) ? new RemoteCommandTypeWrapper(command.Url) : (command.Path != null) ?
-                        new RemoteCommandTypeWrapper(command.Path, Foundation.NSBundle.MainBundle) : new RemoteCommandTypeWrapper()
-                  )
+                        new RemoteCommandTypeWrapper(command.Path, Foundation.NSBundle.MainBundle) : new RemoteCommandTypeWrapper(),
+                  command.Name,
+                  command.Version)
         {
             this.command = command;
         }
@@ -24,8 +25,8 @@ namespace Tealium.iOS
         /**
          * You can call this method only if the class is inherited and you actually implement the HandleResponse method, otherwise this RemoteCommand will be useless
          */
-        public RemoteCommandIOS(string commandId, string description, RemoteCommandTypeWrapper type)
-            : base(commandId, description, type, response =>
+        public RemoteCommandIOS(string commandId, string description, RemoteCommandTypeWrapper type, string name, string version)
+            : base(commandId, description, type, name, version, response =>
            {
 
            })
@@ -36,9 +37,9 @@ namespace Tealium.iOS
             };
         }
 
-        public string Path => command?.Path;
+        public string Path => Type.Path;
 
-        public string Url => command?.Url;
+        public string Url => Type.Url;
 
         public void HandleResponse(IRemoteCommandResponse response)
         {

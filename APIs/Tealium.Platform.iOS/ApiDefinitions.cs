@@ -181,6 +181,10 @@ namespace Tealium.Platform.iOS
 	[DisableDefaultCtor]
 	interface RemoteCommandWrapper
 	{
+		// @property (readonly, nonatomic, strong) RemoteCommandTypeWrapper * _Nonnull type;
+		[Export ("type", ArgumentSemantic.Strong)]
+		RemoteCommandTypeWrapper Type { get; }
+
 		// @property (readonly, copy, nonatomic) NSString * _Nonnull commandId;
 		[Export ("commandId")]
 		string CommandId { get; }
@@ -201,10 +205,14 @@ namespace Tealium.Platform.iOS
 		[Export ("completion", ArgumentSemantic.Copy)]
 		Action<RemoteCommandResponseWrapper> Completion { get; set; }
 
-		// -(instancetype _Nonnull)initWithCommandId:(NSString * _Nonnull)commandId description:(NSString * _Nullable)description type:(RemoteCommandTypeWrapper * _Nonnull)type completion:(void (^ _Nonnull)(RemoteCommandResponseWrapper * _Nonnull))completion __attribute__((objc_designated_initializer));
+		// -(instancetype _Nonnull)initWithCommandId:(NSString * _Nonnull)commandId description:(NSString * _Nullable)description type:(RemoteCommandTypeWrapper * _Nonnull)type completion:(void (^ _Nonnull)(RemoteCommandResponseWrapper * _Nonnull))completion;
 		[Export ("initWithCommandId:description:type:completion:")]
-		[DesignatedInitializer]
 		IntPtr Constructor (string commandId, [NullAllowed] string description, RemoteCommandTypeWrapper type, Action<RemoteCommandResponseWrapper> completion);
+
+		// -(instancetype _Nonnull)initWithCommandId:(NSString * _Nonnull)commandId description:(NSString * _Nullable)description type:(RemoteCommandTypeWrapper * _Nonnull)type name:(NSString * _Nullable)name version:(NSString * _Nullable)version completion:(void (^ _Nonnull)(RemoteCommandResponseWrapper * _Nonnull))completion __attribute__((objc_designated_initializer));
+		[Export ("initWithCommandId:description:type:name:version:completion:")]
+		[DesignatedInitializer]
+		IntPtr Constructor (string commandId, [NullAllowed] string description, RemoteCommandTypeWrapper type, [NullAllowed] string name, [NullAllowed] string version, Action<RemoteCommandResponseWrapper> completion);
 	}
 
 	// @interface TealiumConfigWrapper : NSObject

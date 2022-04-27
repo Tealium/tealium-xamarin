@@ -108,6 +108,8 @@ open class RemoteCommandWrapper: NSObject {
 
     private(set) var command: RemoteCommand!
     
+    @objc public let type: RemoteCommandTypeWrapper
+    
     @objc public var commandId: String {
         command.commandId
     }
@@ -121,12 +123,12 @@ open class RemoteCommandWrapper: NSObject {
         }
     }
     
-    @objc public var name: String {
-        command?.commandId ?? ""
+    @objc open var name: String {
+        command.name
     }
     
-    @objc public var version: String? {
-        command?.version
+    @objc open var version: String? {
+        command.version
     }
     
     /// Just used to allow the return of the completion variable
@@ -137,13 +139,37 @@ open class RemoteCommandWrapper: NSObject {
     /// - Parameters:
     ///     - commandId: `String` identifier for command block.
     ///     - description: `String?` description of command.
-    ///     - type: Type of remote command: webview, local or remote
+    ///     - type: Type of remote command: webview, local or remote.
+    ///     - completion: The completion block to run when this remote command is triggered.
+    @objc public convenience init(commandId: String,
+                                  description: String?,
+                                  type: RemoteCommandTypeWrapper = RemoteCommandTypeWrapper(),
+                                  completion : @escaping (_ response: RemoteCommandResponseWrapper) -> Void) {
+        self.init(commandId: commandId,
+                  description: description,
+                  type: type,
+                  name: nil,
+                  version: nil,
+                  completion: completion)
+    }
+    
+    /// Constructor for a Tealium Remote Command.
+    ///
+    /// - Parameters:
+    ///     - commandId: `String` identifier for command block.
+    ///     - description: `String?` description of command.
+    ///     - type: Type of remote command: webview, local or remote.
+    ///     - name: The name of the remote command, for tracking purposes.
+    ///     - version: The version of the remote command, for tracking purposes.
     ///     - completion: The completion block to run when this remote command is triggered.
     @objc public init(commandId: String,
                       description: String?,
                       type: RemoteCommandTypeWrapper = RemoteCommandTypeWrapper(),
+                      name: String?,
+                      version: String?,
                       completion : @escaping (_ response: RemoteCommandResponseWrapper) -> Void) {
         self.completion = completion
+        self.type = type
         self.command = nil
         super.init()
         self.command = NameAndVersionRemoteCommand(commandId: commandId,

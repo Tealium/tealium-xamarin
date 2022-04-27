@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using Tealium;
 
 namespace TealiumXamarinExample.Teal
@@ -76,6 +77,8 @@ namespace TealiumXamarinExample.Teal
             get => InstanceManager.GetExistingInstance(TealiumConstants.ACCOUNT_NAME, TealiumConstants.PROFILE_NAME, TealiumConstants.ENVIRONMENT);
         }
 
+        public static List<IRemoteCommand> RemoteCommands = new List<IRemoteCommand>();
+
         static List<IRemoteCommand> SetupRemoteCommands()
         {
             var command = new DelegateRemoteCommand(TealiumConstants.REMOTE_COMMAND_ID, "Test command " + TealiumConstants.REMOTE_COMMAND_ID)
@@ -86,8 +89,10 @@ namespace TealiumXamarinExample.Teal
                     System.Diagnostics.Debug.WriteLine($"Command Payload: {resp.Payload}");
                 }
             };
+            var list = new List<IRemoteCommand>(RemoteCommands);
+            list.Add(command);
 
-            return new List<IRemoteCommand>() { command };
+            return list;
         }
     }
 
