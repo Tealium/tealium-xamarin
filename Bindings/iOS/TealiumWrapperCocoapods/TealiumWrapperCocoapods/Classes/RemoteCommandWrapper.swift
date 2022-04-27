@@ -49,6 +49,11 @@ public class RemoteCommandResponseWrapper: NSObject {
     init(response: RemoteCommandResponseProtocol) {
         self.response = response
     }
+    
+    @objc public init(payload: [String: Any]) {
+        response = JSONRemoteCommandResponse(with: payload)
+    }
+    
     @objc public var payload: [String: Any]? {
         get {
             response.payload

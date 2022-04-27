@@ -65,9 +65,9 @@ namespace Tealium.RemoteCommands.Firebase
         public abstract string Path { get; }
         public abstract string Url { get; }
 
-        string IRemoteCommand.Name => "xamarin-"+CommandId;
+        public string Name => "xamarin-"+CommandId;
 
-        string IRemoteCommand.Version => "1.0.0";
+        public string Version => "1.0.0";
 
         /// <summary>
         /// Handles the Remote Command response - this contains all the logic 

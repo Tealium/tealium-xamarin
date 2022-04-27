@@ -123,6 +123,11 @@ namespace Tealium.Platform.iOS
 	[DisableDefaultCtor]
 	interface RemoteCommandResponseWrapper
 	{
+		// -(instancetype _Nonnull)initWithPayload:(NSDictionary<NSString *,id> * _Nonnull)payload __attribute__((objc_designated_initializer));
+		[Export ("initWithPayload:")]
+		[DesignatedInitializer]
+		IntPtr Constructor (NSDictionary<NSString, NSObject> payload);
+
 		// @property (copy, nonatomic) NSDictionary<NSString *,id> * _Nullable payload;
 		[NullAllowed, Export ("payload", ArgumentSemantic.Copy)]
 		NSDictionary<NSString, NSObject> Payload { get; set; }
