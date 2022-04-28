@@ -30,7 +30,7 @@ namespace TealiumXamarinExample.iOS
 
             // We create Tealium instance here so that application lifecycle can start right away
             Teal.Helper.SetInstanceManager(new TealiumInstanceManager(new TealiumInstanceFactoryIOS()));
-            var command = new FirebaseRemoteCommandIOS(new RemoteCommandTypeWrapper());
+            var command = new FirebaseRemoteCommandIOS(new RemoteCommandTypeWrapper("firebase", NSBundle.MainBundle));
             Console.WriteLine(command.Name);
             Teal.Helper.RemoteCommands.Add(command);
             Teal.Helper.Init();
