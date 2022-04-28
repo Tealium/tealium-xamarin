@@ -144,17 +144,20 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             this.type = type;
         }
 
-        protected override void Configure(int? sessionTimeoutDuration, int? minSessionDuration, bool? analyticsEnabled)
+        protected override void Configure(int? sessionTimeoutDuration, bool? analyticsEnabled, string loggerLevel)
         {
+            if (loggerLevel != null)
+            {
+                Configuration.SharedInstance.SetLoggerLevel(ParseLogLevel(loggerLevel));
+            }
             if (sessionTimeoutDuration.HasValue)
             {
                 Analytics.SetSessionTimeoutInterval(sessionTimeoutDuration.Value);
             }
             if (analyticsEnabled.HasValue)
             {
-                Analytics.SetAnalyticsCollectionEnabled(analyticsEnabled.Value);
+                Analytics.SetAnalyticsCollectionEnabled(false);
             }
-            
             if (App.DefaultInstance == null)
             {
                 //Can't call configure more than once... errors.
@@ -162,7 +165,30 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             }
         }
 
-        protected override void LogEvent(string eventName, Dictionary<String, String> eventParams)
+        private LoggerLevel ParseLogLevel(string loggerLevel)
+        {
+            switch (loggerLevel)
+            {
+                case "min":
+                    return LoggerLevel.Min;
+                case "max":
+                    return LoggerLevel.Max;
+                case "error":
+                    return LoggerLevel.Error;
+                case "debug":
+                    return LoggerLevel.Debug;
+                case "notice":
+                    return LoggerLevel.Notice;
+                case "warning":
+                    return LoggerLevel.Warning;
+                case "info":
+                    return LoggerLevel.Info;
+                default:
+                    return LoggerLevel.Min;
+            }
+        }
+
+        protected override void LogEvent(string eventName, Dictionary<string, string> eventParams)
         {
             //if(IsNullOrNullString(eventName)) { return; }
             Dictionary<object, object> dict = new Dictionary<object, object>();

@@ -158,7 +158,7 @@ namespace Tealium.RemoteCommands.Firebase.Droid
         }
 
 
-        protected override void Configure(int? sessionTimeoutDuration, int? minSessionDuration, bool? analyticsEnabled)
+        protected override void Configure(int? sessionTimeoutDuration, bool? analyticsEnabled, string loggerLevel)
         {
 
             if (sessionTimeoutDuration.HasValue)

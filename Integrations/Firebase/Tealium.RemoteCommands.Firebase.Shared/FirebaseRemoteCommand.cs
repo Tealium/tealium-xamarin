@@ -9,7 +9,6 @@ namespace Tealium.RemoteCommands.Firebase
     {
 
         public static readonly string KeySessionTimeout = "firebase_session_timeout_seconds";
-        public static readonly string KeyMinSeconds = "firebase_session_minimum_seconds";
         public static readonly string KeyAnalyticsEnabled = "firebase_analytics_enabled";
         // reserved for future use. log level can only be set
         public static readonly string KeyLogLevel = "firebase_log_level";
@@ -105,14 +104,6 @@ namespace Tealium.RemoteCommands.Firebase
                             }
                             catch { }
 
-                            int? minSeconds = null;
-                            try
-                            {
-                                minSeconds = response.Payload.ContainsKey(KeyMinSeconds) == true ?
-                                            (int?)int.Parse(response.Payload.GetValueForKey<string>(KeyMinSeconds)) * 1000 : null;
-                            }
-                            catch { }
-
                             bool? analyticsEnabled = null;
                             try
                             {
@@ -120,8 +111,13 @@ namespace Tealium.RemoteCommands.Firebase
                                             false : true;
                             }
                             catch { }
-
-                            Configure(timeout, minSeconds, analyticsEnabled);
+                            string loggerLevel = null;
+                            try
+                            {
+                                loggerLevel = response.Payload.GetValueForKey<string>(KeyLogLevel);
+                            }
+                            catch { }
+                            Configure(timeout, analyticsEnabled, loggerLevel);
 
                             break;
                         case Commands.LogEvent:
@@ -182,7 +178,6 @@ namespace Tealium.RemoteCommands.Firebase
                 }
 
             }
-
         }
 
         /// <summary>
@@ -227,9 +222,9 @@ namespace Tealium.RemoteCommands.Firebase
         /// minSessionDuration and analyticsEnabled.
         /// </summary>
         /// <param name="sessionTimeoutDuration">Session timeout duration.</param>
-        /// <param name="minSessionDuration">Minimum session duration.</param>
         /// <param name="analyticsEnabled">Analytics enabled.</param>
-        protected abstract void Configure(int? sessionTimeoutDuration, int? minSessionDuration, bool? analyticsEnabled);
+        /// <param name="loggerLevel">Logger level.</param>
+        protected abstract void Configure(int? sessionTimeoutDuration, bool? analyticsEnabled, string loggerLevel);
 
         /// <summary>
         /// Logs a Firebase event with the given <paramref name="eventName"/> and <paramref name="eventParams"/>.
