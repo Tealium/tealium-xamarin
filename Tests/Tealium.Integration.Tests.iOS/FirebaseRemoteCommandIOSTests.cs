@@ -64,7 +64,7 @@ namespace Tealium.Integration.Tests.iOS
 
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
 
-                json.SetValueForKey(NSObject.FromObject(FirebaseRemoteCommand.Commands.Config), new NSString(FirebaseRemoteCommand.KeyCommandName));
+                json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.Config), new NSString(FirebaseConstants.KeyCommandName));
 
                 return json;
 
@@ -83,9 +83,9 @@ namespace Tealium.Integration.Tests.iOS
 
                 NSMutableDictionary<NSString, NSObject> json = InitPayloadWithNoProperties;
 
-                json.SetValueForKey(NSObject.FromObject(10000), new NSString(FirebaseRemoteCommand.KeySessionTimeout));
+                json.SetValueForKey(NSObject.FromObject(10000), new NSString(FirebaseConstants.KeySessionTimeout));
 
-                json.SetValueForKey(NSObject.FromObject(false), new NSString(FirebaseRemoteCommand.KeyAnalyticsEnabled));
+                json.SetValueForKey(NSObject.FromObject(false), new NSString(FirebaseConstants.KeyAnalyticsEnabled));
 
                 return json;
 
@@ -104,9 +104,9 @@ namespace Tealium.Integration.Tests.iOS
 
                 NSMutableDictionary<NSString, NSObject> json = InitPayloadWithNoProperties;
 
-                json.SetValueForKey(NSObject.FromObject("string"), new NSString(FirebaseRemoteCommand.KeySessionTimeout));
+                json.SetValueForKey(NSObject.FromObject("string"), new NSString(FirebaseConstants.KeySessionTimeout));
 
-                json.SetValueForKey(NSObject.FromObject("test"), new NSString(FirebaseRemoteCommand.KeyAnalyticsEnabled));
+                json.SetValueForKey(NSObject.FromObject("test"), new NSString(FirebaseConstants.KeyAnalyticsEnabled));
 
                 return json;
 
@@ -126,9 +126,9 @@ namespace Tealium.Integration.Tests.iOS
 
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
 
-                json.SetValueForKey(NSObject.FromObject(FirebaseRemoteCommand.Commands.LogEvent), new NSString(FirebaseRemoteCommand.KeyCommandName));
+                json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.LogEvent), new NSString(FirebaseConstants.KeyCommandName));
 
-                json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseRemoteCommand.KeyEventName));
+                json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseConstants.KeyEventName));
 
 
                 return json;
@@ -155,9 +155,9 @@ namespace Tealium.Integration.Tests.iOS
                 parameters.SetValueForKey(NSObject.FromObject("my content type"), new NSString("param_content_type"));
 
 
-                json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseRemoteCommand.KeyEventName));
+                json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseConstants.KeyEventName));
 
-                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseRemoteCommand.JSONKeyEventParams));
+                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseConstants.JSONKeyEventParams));
 
 
                 return json;
@@ -177,9 +177,9 @@ namespace Tealium.Integration.Tests.iOS
 
                 NSMutableDictionary<NSString, NSObject> json = LogEventWithNoParams;
 
-                json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseRemoteCommand.KeyEventName));
+                json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseConstants.KeyEventName));
 
-                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseRemoteCommand.JSONKeyEventParams));
+                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.JSONKeyEventParams));
 
 
                 return json;
@@ -199,11 +199,11 @@ namespace Tealium.Integration.Tests.iOS
 
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
 
-                json.SetValueForKey(NSObject.FromObject(FirebaseRemoteCommand.Commands.SetScreenName), new NSString(FirebaseRemoteCommand.KeyCommandName));
+                json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetScreenName), new NSString(FirebaseConstants.KeyCommandName));
 
-                json.SetValueForKey(NSObject.FromObject("some screen name"), new NSString(FirebaseRemoteCommand.KeyScreenName));
+                json.SetValueForKey(NSObject.FromObject("some screen name"), new NSString(FirebaseConstants.KeyScreenName));
 
-                json.SetValueForKey(NSObject.FromObject("screen class"), new NSString(FirebaseRemoteCommand.KeyScreenClass));
+                json.SetValueForKey(NSObject.FromObject("screen class"), new NSString(FirebaseConstants.KeyScreenClass));
 
 
                 return json;
@@ -223,11 +223,11 @@ namespace Tealium.Integration.Tests.iOS
 
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
 
-                json.SetValueForKey(NSObject.FromObject(FirebaseRemoteCommand.Commands.SetScreenName), new NSString(FirebaseRemoteCommand.KeyCommandName));
+                json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetScreenName), new NSString(FirebaseConstants.KeyCommandName));
 
-                json.SetValueForKey(NSObject.FromObject(10), new NSString(FirebaseRemoteCommand.KeyScreenName));
+                json.SetValueForKey(NSObject.FromObject(10), new NSString(FirebaseConstants.KeyScreenName));
 
-                json.SetValueForKey(NSObject.FromObject(true), new NSString(FirebaseRemoteCommand.KeyScreenClass));
+                json.SetValueForKey(NSObject.FromObject(true), new NSString(FirebaseConstants.KeyScreenClass));
 
 
                 return json;
@@ -247,9 +247,9 @@ namespace Tealium.Integration.Tests.iOS
 
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
 
-                json.SetValueForKey(NSObject.FromObject(FirebaseRemoteCommand.Commands.SetUserId), new NSString(FirebaseRemoteCommand.KeyCommandName));
+                json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetUserId), new NSString(FirebaseConstants.KeyCommandName));
 
-                json.SetValueForKey(NSObject.FromObject("James"), new NSString(FirebaseRemoteCommand.KeyUserId));
+                json.SetValueForKey(NSObject.FromObject("James"), new NSString(FirebaseConstants.KeyUserId));
 
 
                 return json;
@@ -269,9 +269,9 @@ namespace Tealium.Integration.Tests.iOS
 
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
 
-                json.SetValueForKey(NSObject.FromObject(FirebaseRemoteCommand.Commands.SetUserId), new NSString(FirebaseRemoteCommand.KeyCommandName));
+                json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetUserId), new NSString(FirebaseConstants.KeyCommandName));
 
-                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseRemoteCommand.KeyUserId));
+                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.KeyUserId));
 
 
 
@@ -292,11 +292,11 @@ namespace Tealium.Integration.Tests.iOS
 
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
 
-                json.SetValueForKey(NSObject.FromObject(FirebaseRemoteCommand.Commands.SetUserProperty), new NSString(FirebaseRemoteCommand.KeyCommandName));
+                json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetUserProperty), new NSString(FirebaseConstants.KeyCommandName));
 
-                json.SetValueForKey(NSObject.FromObject("property name"), new NSString(FirebaseRemoteCommand.KeyUserPropertyName));
+                json.SetValueForKey(NSObject.FromObject("property name"), new NSString(FirebaseConstants.KeyUserPropertyName));
 
-                json.SetValueForKey(NSObject.FromObject("property value"), new NSString(FirebaseRemoteCommand.KeyUserPropertyValue));
+                json.SetValueForKey(NSObject.FromObject("property value"), new NSString(FirebaseConstants.KeyUserPropertyValue));
 
 
 
@@ -317,11 +317,11 @@ namespace Tealium.Integration.Tests.iOS
 
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
 
-                json.SetValueForKey(NSObject.FromObject(FirebaseRemoteCommand.Commands.SetUserProperty), new NSString(FirebaseRemoteCommand.KeyCommandName));
+                json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetUserProperty), new NSString(FirebaseConstants.KeyCommandName));
 
-                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseRemoteCommand.KeyUserPropertyName));
+                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.KeyUserPropertyName));
 
-                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseRemoteCommand.KeyUserPropertyValue));
+                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.KeyUserPropertyValue));
 
 
 
@@ -344,29 +344,29 @@ namespace Tealium.Integration.Tests.iOS
 
                 json.SetValueForKey(NSObject.FromObject(String.Join(',',
 
-                            new string[] { FirebaseRemoteCommand.Commands.Config,
+                            new string[] { FirebaseConstants.Commands.Config,
 
-                                            FirebaseRemoteCommand.Commands.SetUserId,
+                                            FirebaseConstants.Commands.SetUserId,
 
-                                            FirebaseRemoteCommand.Commands.SetUserProperty,
+                                            FirebaseConstants.Commands.SetUserProperty,
 
-                                            FirebaseRemoteCommand.Commands.SetScreenName,
+                                            FirebaseConstants.Commands.SetScreenName,
 
-                                            FirebaseRemoteCommand.Commands.LogEvent })),
+                                            FirebaseConstants.Commands.LogEvent })),
 
-                                             new NSString(FirebaseRemoteCommand.KeyCommandName));
+                                             new NSString(FirebaseConstants.KeyCommandName));
 
-                json.SetValueForKey(NSObject.FromObject(false), new NSString(FirebaseRemoteCommand.KeyAnalyticsEnabled));
+                json.SetValueForKey(NSObject.FromObject(false), new NSString(FirebaseConstants.KeyAnalyticsEnabled));
 
-                json.SetValueForKey(NSObject.FromObject("property name"), new NSString(FirebaseRemoteCommand.KeyUserPropertyName));
+                json.SetValueForKey(NSObject.FromObject("property name"), new NSString(FirebaseConstants.KeyUserPropertyName));
 
-                json.SetValueForKey(NSObject.FromObject("property value"), new NSString(FirebaseRemoteCommand.KeyUserPropertyValue));
+                json.SetValueForKey(NSObject.FromObject("property value"), new NSString(FirebaseConstants.KeyUserPropertyValue));
 
-                json.SetValueForKey(NSObject.FromObject("James"), new NSString(FirebaseRemoteCommand.KeyUserId));
+                json.SetValueForKey(NSObject.FromObject("James"), new NSString(FirebaseConstants.KeyUserId));
 
-                json.SetValueForKey(NSObject.FromObject("screen_name"), new NSString(FirebaseRemoteCommand.KeyScreenName));
+                json.SetValueForKey(NSObject.FromObject("screen_name"), new NSString(FirebaseConstants.KeyScreenName));
 
-                json.SetValueForKey(NSObject.FromObject("screen class"), new NSString(FirebaseRemoteCommand.KeyScreenClass));
+                json.SetValueForKey(NSObject.FromObject("screen class"), new NSString(FirebaseConstants.KeyScreenClass));
 
                 NSMutableDictionary parameters = new NSMutableDictionary();
 
@@ -375,9 +375,9 @@ namespace Tealium.Integration.Tests.iOS
                 parameters.SetValueForKey(NSObject.FromObject("my content type"), new NSString("param_content_type"));
 
 
-                json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseRemoteCommand.KeyEventName));
+                json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseConstants.KeyEventName));
 
-                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseRemoteCommand.JSONKeyEventParams));
+                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseConstants.JSONKeyEventParams));
 
                 return json;
 
@@ -398,29 +398,29 @@ namespace Tealium.Integration.Tests.iOS
 
                 json.SetValueForKey(NSObject.FromObject(String.Join(',',
 
-                            new string[] { FirebaseRemoteCommand.Commands.Config,
+                            new string[] { FirebaseConstants.Commands.Config,
 
-                                            FirebaseRemoteCommand.Commands.SetUserId,
+                                            FirebaseConstants.Commands.SetUserId,
 
-                                            FirebaseRemoteCommand.Commands.SetUserProperty,
+                                            FirebaseConstants.Commands.SetUserProperty,
 
-                                            FirebaseRemoteCommand.Commands.SetScreenName,
+                                            FirebaseConstants.Commands.SetScreenName,
 
-                                            FirebaseRemoteCommand.Commands.LogEvent })),
+                                            FirebaseConstants.Commands.LogEvent })),
 
-                                             new NSString(FirebaseRemoteCommand.KeyCommandName));
+                                             new NSString(FirebaseConstants.KeyCommandName));
 
-                json.SetValueForKey(NSObject.FromObject(false), new NSString(FirebaseRemoteCommand.KeyAnalyticsEnabled));
+                json.SetValueForKey(NSObject.FromObject(false), new NSString(FirebaseConstants.KeyAnalyticsEnabled));
 
-                json.SetValueForKey(NSObject.FromObject("property name"), new NSString(FirebaseRemoteCommand.KeyUserPropertyName));
+                json.SetValueForKey(NSObject.FromObject("property name"), new NSString(FirebaseConstants.KeyUserPropertyName));
 
-                json.SetValueForKey(NSObject.FromObject("property value"), new NSString(FirebaseRemoteCommand.KeyUserPropertyValue));
+                json.SetValueForKey(NSObject.FromObject("property value"), new NSString(FirebaseConstants.KeyUserPropertyValue));
 
                 //json.SetValueForKey(FirebaseRemoteCommand.KeyUserId, "James");//missing
 
-                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseRemoteCommand.KeyScreenName));
+                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.KeyScreenName));
 
-                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseRemoteCommand.KeyScreenClass));
+                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.KeyScreenClass));
 
                 NSMutableDictionary parameters = new NSMutableDictionary();
 
@@ -431,9 +431,9 @@ namespace Tealium.Integration.Tests.iOS
                 //test empty params.
 
 
-                json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseRemoteCommand.KeyEventName));
+                json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseConstants.KeyEventName));
 
-                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseRemoteCommand.JSONKeyEventParams));
+                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseConstants.JSONKeyEventParams));
 
                 return json;
 

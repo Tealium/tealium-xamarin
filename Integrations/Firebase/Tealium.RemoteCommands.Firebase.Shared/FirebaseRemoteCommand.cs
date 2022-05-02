@@ -1,33 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Tealium;
 using System.Linq;
 
 namespace Tealium.RemoteCommands.Firebase
 {
+
     public abstract class FirebaseRemoteCommand : IRemoteCommand
     {
 
-        public static readonly string KeySessionTimeout = "firebase_session_timeout_seconds";
-        public static readonly string KeyAnalyticsEnabled = "firebase_analytics_enabled";
-        // reserved for future use. log level can only be set
-        public static readonly string KeyLogLevel = "firebase_log_level";
-        public static readonly string KeyEventName = "firebase_event_name";
-        public static readonly string KeyEventParams = "firebase_event_params";
-        public static readonly string JSONKeyEventParams = "event";
-        public static readonly string KeyItemsParams = "param_items";
-        public static readonly string JSONKeyItemsParams = "items";
-        public static readonly string KeyItemIdParam = "param_item_id";
-
-        // deprecated
-        public static readonly string KeyScreenName = "firebase_screen_name";
-        // deprecated
-        public static readonly string KeyScreenClass = "firebase_screen_class";
-
-        public static readonly string KeyUserPropertyName = "firebase_property_name";
-        public static readonly string KeyUserPropertyValue = "firebase_property_value";
-        public static readonly string KeyUserId = "firebase_user_id";
-        public static readonly string KeyCommandName = "command_name";
+        
 
         protected static readonly Dictionary<string, string> eventsMap = new Dictionary<string, string>();
         protected static readonly Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -81,7 +62,7 @@ namespace Tealium.RemoteCommands.Firebase
         /// <param name="response">Response.</param>
         public void HandleResponse(IRemoteCommandResponse response)
         {
-            string command = response.Payload.GetValueForKey<string>(KeyCommandName);
+            string command = response.Payload.GetValueForKey<string>(FirebaseConstants.KeyCommandName);
             if (string.IsNullOrEmpty(command))
             {
                 return;
@@ -99,36 +80,36 @@ namespace Tealium.RemoteCommands.Firebase
                     command = command.Trim();
                     switch (command)
                     {
-                        case Commands.Config:
+                        case FirebaseConstants.Commands.Config:
                             int? timeout = null;
                             try
                             {
-                                timeout = response.Payload.ContainsKey(KeySessionTimeout) == true ?
-                                            (int?)int.Parse(response.Payload.GetValueForKey<string>(KeySessionTimeout)) * 1000 : null;
+                                timeout = response.Payload.ContainsKey(FirebaseConstants.KeySessionTimeout) == true ?
+                                            (int?)int.Parse(response.Payload.GetValueForKey<string>(FirebaseConstants.KeySessionTimeout)) * 1000 : null;
                             }
                             catch { }
 
                             bool? analyticsEnabled = null;
                             try
                             {
-                                analyticsEnabled = response.Payload.GetValueForKey<string>(KeyAnalyticsEnabled) != null && response.Payload.GetValueForKey<string>(KeyAnalyticsEnabled) == "false" ?
+                                analyticsEnabled = response.Payload.GetValueForKey<string>(FirebaseConstants.KeyAnalyticsEnabled) != null && response.Payload.GetValueForKey<string>(FirebaseConstants.KeyAnalyticsEnabled) == "false" ?
                                             false : true;
                             }
                             catch { }
                             string loggerLevel = null;
                             try
                             {
-                                loggerLevel = response.Payload.GetValueForKey<string>(KeyLogLevel);
+                                loggerLevel = response.Payload.GetValueForKey<string>(FirebaseConstants.KeyLogLevel);
                             }
                             catch { }
                             Configure(timeout, analyticsEnabled, loggerLevel);
 
                             break;
-                        case Commands.LogEvent:
-                            string eventName = response.Payload.GetValueForKey<string>(KeyEventName);
+                        case FirebaseConstants.Commands.LogEvent:
+                            string eventName = response.Payload.GetValueForKey<string>(FirebaseConstants.KeyEventName);
 
                             Dictionary<string, object> eventParams = new Dictionary<string, object>();
-                            string paramKey = response.Payload.ContainsKey(JSONKeyEventParams) ? JSONKeyEventParams : response.Payload.ContainsKey(KeyEventParams) ? KeyEventParams : null;
+                            string paramKey = response.Payload.ContainsKey(FirebaseConstants.JSONKeyEventParams) ? FirebaseConstants.JSONKeyEventParams : response.Payload.ContainsKey(FirebaseConstants.KeyEventParams) ? FirebaseConstants.KeyEventParams : null;
                             if (paramKey != null)
                             {
                                 try
@@ -140,22 +121,22 @@ namespace Tealium.RemoteCommands.Firebase
                                 }
                             }
 
-                            if (response.Payload.ContainsKey(JSONKeyItemsParams))
+                            if (response.Payload.ContainsKey(FirebaseConstants.JSONKeyItemsParams))
                             {
                                 try
                                 {
-                                    Dictionary<string, object> items = response.Payload.GetValueForKey<Dictionary<string, object>>(JSONKeyItemsParams);
-                                    eventParams[KeyItemsParams] = FormatItems(items);
+                                    Dictionary<string, object> items = response.Payload.GetValueForKey<Dictionary<string, object>>(FirebaseConstants.JSONKeyItemsParams);
+                                    eventParams[FirebaseConstants.KeyItemsParams] = FormatItems(items);
                                 }
                                 catch
                                 {
                                 }
                             }
-                            if (response.Payload.ContainsKey(KeyItemsParams)) // Both if we manually formatted or if they come from the webview already
+                            if (response.Payload.ContainsKey(FirebaseConstants.KeyItemsParams)) // Both if we manually formatted or if they come from the webview already
                             {
-                                Dictionary<string, object>[] items = response.Payload.GetValueForKey<Dictionary<string, object>[]>(KeyItemsParams);
+                                Dictionary<string, object>[] items = response.Payload.GetValueForKey<Dictionary<string, object>[]>(FirebaseConstants.KeyItemsParams);
 
-                                eventParams[KeyItemsParams] = items.Select(item => MapParamKeys(item));
+                                eventParams[FirebaseConstants.KeyItemsParams] = items.Select(item => MapParamKeys(item));
                             }
                             else
 
@@ -164,24 +145,24 @@ namespace Tealium.RemoteCommands.Firebase
                                 LogEvent(mapEventNames(eventName), MapParamKeys(eventParams));
                             }
                             break;
-                        case Commands.SetScreenName:
-                            string screenName = response.Payload.GetValueForKey<string>(KeyScreenName);
-                            string screenClass = response.Payload.GetValueForKey<string>(KeyScreenClass);
+                        case FirebaseConstants.Commands.SetScreenName:
+                            string screenName = response.Payload.GetValueForKey<string>(FirebaseConstants.KeyScreenName);
+                            string screenClass = response.Payload.GetValueForKey<string>(FirebaseConstants.KeyScreenClass);
                             if (!IsNullOrNullString(screenName) && !IsNullOrNullString(screenClass))
                             {
                                 SetScreenName(screenName, screenClass);
                             }
                             break;
-                        case Commands.SetUserProperty:
-                            string propertyName = response.Payload.GetValueForKey<string>(KeyUserPropertyName);
-                            string propertyValue = response.Payload.GetValueForKey<string>(KeyUserPropertyValue);
+                        case FirebaseConstants.Commands.SetUserProperty:
+                            string propertyName = response.Payload.GetValueForKey<string>(FirebaseConstants.KeyUserPropertyName);
+                            string propertyValue = response.Payload.GetValueForKey<string>(FirebaseConstants.KeyUserPropertyValue);
                             if (!IsNullOrNullString(propertyName) && !IsNullOrNullString(propertyValue))
                             {
                                 SetUserProperty(propertyName, propertyValue);
                             }
                             break;
-                        case Commands.SetUserId:
-                            string userId = response.Payload.GetValueForKey<string>(KeyUserId);
+                        case FirebaseConstants.Commands.SetUserId:
+                            string userId = response.Payload.GetValueForKey<string>(FirebaseConstants.KeyUserId);
                             if (!IsNullOrNullString(userId))
                             {
                                 SetUserId(userId);
@@ -206,7 +187,7 @@ namespace Tealium.RemoteCommands.Firebase
 
         private Dictionary<string, object>[] FormatItems(Dictionary<string,object> items)
         {
-            var paramId = items[KeyItemIdParam];
+            var paramId = items[FirebaseConstants.KeyItemIdParam];
             if (!(paramId is Array))
             {
                 foreach (var key in items.Keys)
@@ -214,7 +195,7 @@ namespace Tealium.RemoteCommands.Firebase
                     items[key] = new object[] { items[key] };
                 }
             }
-            string[] paramIds = (string[])items[KeyItemIdParam];
+            string[] paramIds = (string[])items[FirebaseConstants.KeyItemIdParam];
             Dictionary<string, object>[] result = new Dictionary<string, object>[paramIds.Length];
             for (int i = 0; i < paramIds.Length; i++) 
             {
@@ -307,19 +288,5 @@ namespace Tealium.RemoteCommands.Firebase
         {
             //do nothing.
         }
-
-        /// <summary>
-        /// Available Command names, this will be looked for in any Remote
-        /// Command payload at the key of <see cref="KeyCommandName"/>
-        /// </summary>
-        public static class Commands
-        {
-            public const string Config = "config";
-            public const string SetUserId = "setUserId";
-            public const string SetUserProperty = "setUserProperty";
-            public const string SetScreenName = "setScreenName";
-            public const string LogEvent = "logEvent";
-        }
-
     }
 }
