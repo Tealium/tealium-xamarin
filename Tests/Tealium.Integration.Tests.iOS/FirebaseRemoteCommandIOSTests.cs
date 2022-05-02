@@ -85,8 +85,6 @@ namespace Tealium.Integration.Tests.iOS
 
                 json.SetValueForKey(NSObject.FromObject(10000), new NSString(FirebaseRemoteCommand.KeySessionTimeout));
 
-                json.SetValueForKey(NSObject.FromObject(100), new NSString(FirebaseRemoteCommand.KeyMinSeconds));
-
                 json.SetValueForKey(NSObject.FromObject(false), new NSString(FirebaseRemoteCommand.KeyAnalyticsEnabled));
 
                 return json;
@@ -107,8 +105,6 @@ namespace Tealium.Integration.Tests.iOS
                 NSMutableDictionary<NSString, NSObject> json = InitPayloadWithNoProperties;
 
                 json.SetValueForKey(NSObject.FromObject("string"), new NSString(FirebaseRemoteCommand.KeySessionTimeout));
-
-                json.SetValueForKey(NSObject.FromObject("10"), new NSString(FirebaseRemoteCommand.KeyMinSeconds));
 
                 json.SetValueForKey(NSObject.FromObject("test"), new NSString(FirebaseRemoteCommand.KeyAnalyticsEnabled));
 
@@ -161,7 +157,7 @@ namespace Tealium.Integration.Tests.iOS
 
                 json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseRemoteCommand.KeyEventName));
 
-                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseRemoteCommand.KeyEventParams));
+                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseRemoteCommand.JSONKeyEventParams));
 
 
                 return json;
@@ -183,7 +179,7 @@ namespace Tealium.Integration.Tests.iOS
 
                 json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseRemoteCommand.KeyEventName));
 
-                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseRemoteCommand.KeyEventParams));
+                json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseRemoteCommand.JSONKeyEventParams));
 
 
                 return json;
@@ -381,7 +377,7 @@ namespace Tealium.Integration.Tests.iOS
 
                 json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseRemoteCommand.KeyEventName));
 
-                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseRemoteCommand.KeyEventParams));
+                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseRemoteCommand.JSONKeyEventParams));
 
                 return json;
 
@@ -437,7 +433,7 @@ namespace Tealium.Integration.Tests.iOS
 
                 json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseRemoteCommand.KeyEventName));
 
-                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseRemoteCommand.KeyEventParams));
+                json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseRemoteCommand.JSONKeyEventParams));
 
                 return json;
 
@@ -598,13 +594,13 @@ namespace Tealium.Integration.Tests.iOS
             public int GetLogEventCalls => LogEventCalled;
             public int GetScreenNameCalls => SetScreenCalled;
 
-            protected override void Configure(int? sessionTimeoutDuration, int? minSessionDuration, bool? analyticsEnabled)
+            protected override void Configure(int? sessionTimeoutDuration, bool? analyticsEnabled, string loggerLevel)
             {
-                base.Configure(sessionTimeoutDuration, minSessionDuration, analyticsEnabled);
+                base.Configure(sessionTimeoutDuration, analyticsEnabled, loggerLevel);
                 ConfiguredCalled++;
             }
 
-            protected override void LogEvent(string eventName, Dictionary<string, string> eventParams)
+            protected override void LogEvent(string eventName, Dictionary<string, object> eventParams)
             {
                 base.LogEvent(eventName, eventParams);
                 LogEventCalled++;

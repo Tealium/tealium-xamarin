@@ -173,23 +173,52 @@ namespace Tealium.RemoteCommands.Firebase.Droid
 
         }
 
-
-        protected override void LogEvent(string eventName, Dictionary<string, string> eventParams)
+        private Bundle JSONToBundle(Dictionary<string, object> eventParams)
         {
             Bundle bundle = new Bundle();
 
             foreach (var key in eventParams.Keys)
             {
-                bundle.PutString(
-                        mapParams(key),
-                        eventParams[key]
-                    );
+                switch (key)
+                {
+                    case FirebaseAnalytics.Param.Discount:
+                    case FirebaseAnalytics.Param.Price:
+                    case FirebaseAnalytics.Param.Shipping:
+                    case FirebaseAnalytics.Param.Tax:
+                    case FirebaseAnalytics.Param.Value:
+                        bundle.PutDouble(key, (double)eventParams[key]);
+                        break;
+                    case FirebaseAnalytics.Param.Level:
+                    case FirebaseAnalytics.Param.NumberOfNights:
+                    case FirebaseAnalytics.Param.NumberOfPassengers:
+                    case FirebaseAnalytics.Param.NumberOfRooms:
+                    case FirebaseAnalytics.Param.Quantity:
+                    case FirebaseAnalytics.Param.Score:
+                    case FirebaseAnalytics.Param.Success:
+                        bundle.PutLong(key, (long)eventParams[key]);
+                        break;
+                    case FirebaseAnalytics.Param.Items:
+                        Dictionary<string, object>[] items = (Dictionary<string,object>[])eventParams[key];
+                        IParcelable[] itemList = new IParcelable[items.Length];
+                        for (int i = 0; i < items.Length; i++)
+                        {
+                            itemList[i] = JSONToBundle(items[i]);
+                        }
+                        bundle.PutParcelableArray(key, itemList);
+                        break;
+                    default:
+                        bundle.PutString(key, eventParams[key].ToString());
+                        break;
+                }
             }
+            return bundle;
+        }
 
-
+        protected override void LogEvent(string eventName, Dictionary<string, object> eventParams)
+        {
             if (eventName != null && eventParams != null)
             {
-                firebaseAnalytics?.LogEvent(eventName, bundle);
+                firebaseAnalytics?.LogEvent(eventName, JSONToBundle(eventParams));
             }
 
         }
@@ -197,7 +226,7 @@ namespace Tealium.RemoteCommands.Firebase.Droid
 
         protected override void SetScreenName(string screenName, string screenClass)
         {
-            LogEvent(FirebaseAnalytics.Event.ScreenView, new Dictionary<string, string>
+            LogEvent(FirebaseAnalytics.Event.ScreenView, new Dictionary<string, object>
             {
                 {FirebaseAnalytics.Param.ScreenName, screenName },
                 {FirebaseAnalytics.Param.ScreenClass, screenClass }

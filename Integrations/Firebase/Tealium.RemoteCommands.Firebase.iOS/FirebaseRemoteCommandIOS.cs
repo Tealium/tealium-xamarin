@@ -6,6 +6,7 @@ using Tealium.Platform.iOS;
 
 using Firebase.Analytics;
 using Firebase.Core;
+using Firebase;
 
 namespace Tealium.RemoteCommands.Firebase.iOS
 {
@@ -188,13 +189,13 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             }
         }
 
-        protected override void LogEvent(string eventName, Dictionary<string, string> eventParams)
+        protected override void LogEvent(string eventName, Dictionary<string, object> eventParams)
         {
             //if(IsNullOrNullString(eventName)) { return; }
             Dictionary<object, object> dict = new Dictionary<object, object>();
             foreach (var key in eventParams.Keys)
             {
-                dict.Add(mapParams(key), eventParams.GetValueOrDefault(key));
+                dict.Add(key, eventParams.GetValueOrDefault(key));
             }
             Analytics.LogEvent(eventName, dict);
         }

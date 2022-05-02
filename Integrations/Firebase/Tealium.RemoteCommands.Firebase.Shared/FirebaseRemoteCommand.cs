@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tealium;
-
+using System.Linq;
 
 namespace Tealium.RemoteCommands.Firebase
 {
@@ -14,6 +14,10 @@ namespace Tealium.RemoteCommands.Firebase
         public static readonly string KeyLogLevel = "firebase_log_level";
         public static readonly string KeyEventName = "firebase_event_name";
         public static readonly string KeyEventParams = "firebase_event_params";
+        public static readonly string JSONKeyEventParams = "event";
+        public static readonly string KeyItemsParams = "param_items";
+        public static readonly string JSONKeyItemsParams = "items";
+        public static readonly string KeyItemIdParam = "param_item_id";
 
         // deprecated
         public static readonly string KeyScreenName = "firebase_screen_name";
@@ -123,27 +127,41 @@ namespace Tealium.RemoteCommands.Firebase
                         case Commands.LogEvent:
                             string eventName = response.Payload.GetValueForKey<string>(KeyEventName);
 
-                            Dictionary<string, string> eventParams;
-                            if (response.Payload.ContainsKey(KeyEventParams))
+                            Dictionary<string, object> eventParams = new Dictionary<string, object>();
+                            string paramKey = response.Payload.ContainsKey(JSONKeyEventParams) ? JSONKeyEventParams : response.Payload.ContainsKey(KeyEventParams) ? KeyEventParams : null;
+                            if (paramKey != null)
                             {
                                 try
                                 {
-                                    eventParams = response.Payload.GetValueForKey<Dictionary<string, string>>(KeyEventParams);
+                                    eventParams = response.Payload.GetValueForKey<Dictionary<string, object>>(paramKey);
                                 }
                                 catch
                                 {
-                                    //fallback to empty dictionary.
-                                    eventParams = new Dictionary<string, string>();
                                 }
                             }
-                            else
+
+                            if (response.Payload.ContainsKey(JSONKeyItemsParams))
                             {
-                                eventParams = new Dictionary<string, string>();
+                                try
+                                {
+                                    Dictionary<string, object> items = response.Payload.GetValueForKey<Dictionary<string, object>>(JSONKeyItemsParams);
+                                    eventParams[KeyItemsParams] = FormatItems(items);
+                                }
+                                catch
+                                {
+                                }
                             }
+                            if (response.Payload.ContainsKey(KeyItemsParams)) // Both if we manually formatted or if they come from the webview already
+                            {
+                                Dictionary<string, object>[] items = response.Payload.GetValueForKey<Dictionary<string, object>[]>(KeyItemsParams);
+
+                                eventParams[KeyItemsParams] = items.Select(item => MapParamKeys(item));
+                            }
+                            else
 
                             if (!IsNullOrNullString(eventName))
                             {
-                                LogEvent(mapEventNames(eventName), eventParams);
+                                LogEvent(mapEventNames(eventName), MapParamKeys(eventParams));
                             }
                             break;
                         case Commands.SetScreenName:
@@ -178,6 +196,37 @@ namespace Tealium.RemoteCommands.Firebase
                 }
 
             }
+        }
+
+        Dictionary<string, object> MapParamKeys(Dictionary<string, object> dict)
+        {
+            return dict.Select(tuple => new KeyValuePair<string, object>(mapParams(tuple.Key), tuple.Value))
+                                            .ToDictionary(tuple => tuple.Key, tuple => tuple.Value);
+        }
+
+        private Dictionary<string, object>[] FormatItems(Dictionary<string,object> items)
+        {
+            var paramId = items[KeyItemIdParam];
+            if (!(paramId is Array))
+            {
+                foreach (var key in items.Keys)
+                {
+                    items[key] = new object[] { items[key] };
+                }
+            }
+            string[] paramIds = (string[])items[KeyItemIdParam];
+            Dictionary<string, object>[] result = new Dictionary<string, object>[paramIds.Length];
+            for (int i = 0; i < paramIds.Length; i++) 
+            {
+                Dictionary<string, object> dict = new Dictionary<string, object>();
+                foreach (var key in items.Keys)
+                {
+                    object[] list = (object[])items[key];
+                    dict[key] = list[i];
+                }
+                result[i] = dict;
+            }
+            return result;
         }
 
         /// <summary>
@@ -231,7 +280,7 @@ namespace Tealium.RemoteCommands.Firebase
         /// </summary>
         /// <param name="eventName">Event name.</param>
         /// <param name="eventParams">Event parameters.</param>
-        protected abstract void LogEvent(string eventName, Dictionary<string, string> eventParams);
+        protected abstract void LogEvent(string eventName, Dictionary<string, object> eventParams);
 
         /// <summary>
         /// Sets the <paramref name="screenName"/> and <paramref name="screenClass"/>.
