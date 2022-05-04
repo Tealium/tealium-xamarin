@@ -31,10 +31,10 @@ namespace Tealium.RemoteCommands.Firebase
         public static class Commands
         {
             public const string Config = "config";
-            public const string SetUserId = "setUserId";
-            public const string SetUserProperty = "setUserProperty";
-            public const string SetScreenName = "setScreenName";
-            public const string LogEvent = "logEvent";
+            public const string SetUserId = "setuserid";
+            public const string SetUserProperty = "setuserproperty";
+            public const string SetScreenName = "setscreenname";
+            public const string LogEvent = "logevent";
         }
     }
 }

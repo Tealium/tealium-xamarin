@@ -37,7 +37,7 @@ namespace TealiumXamarinExample.Teal
                                                          consentPolicy: ConsentManager.ConsentPolicy.CCPA,
                                                          visitorServiceEnabled: true
                                                          );
-
+            config.LogLevel = LogLevel.Dev;
             config.Listeners.Add(new TealiumEventListeners());
 
             // Optional - DispatchValidator examples

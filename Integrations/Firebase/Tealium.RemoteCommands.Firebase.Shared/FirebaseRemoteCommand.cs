@@ -77,7 +77,7 @@ namespace Tealium.RemoteCommands.Firebase
                 try
                 {
                     command = commandArray[j];
-                    command = command.Trim();
+                    command = command.Trim().ToLower();
                     switch (command)
                     {
                         case FirebaseConstants.Commands.Config:
@@ -128,8 +128,10 @@ namespace Tealium.RemoteCommands.Firebase
                                     Dictionary<string, object> items = response.Payload.GetValueForKey<Dictionary<string, object>>(FirebaseConstants.JSONKeyItemsParams);
                                     eventParams[FirebaseConstants.KeyItemsParams] = FormatItems(items);
                                 }
-                                catch
+                                catch (Exception e)
                                 {
+                                    System.Diagnostics.Debug.WriteLine("Error handling " + e.Message);
+                                    System.Diagnostics.Debug.WriteLine("Stack Trace: " + e.StackTrace);
                                 }
                             }
                             if (response.Payload.ContainsKey(FirebaseConstants.KeyItemsParams)) // Both if we manually formatted or if they come from the webview already
@@ -188,21 +190,20 @@ namespace Tealium.RemoteCommands.Firebase
         private Dictionary<string, object>[] FormatItems(Dictionary<string,object> items)
         {
             var paramId = items[FirebaseConstants.KeyItemIdParam];
-            if (!(paramId is Array))
+            var newItems = new Dictionary<string, object>();
+            bool isArray = paramId is Array;
+            foreach (var key in items.Keys)
             {
-                foreach (var key in items.Keys)
-                {
-                    items[key] = new object[] { items[key] };
-                }
+                newItems[key] = isArray ? items[key] : new object[] { items[key] };
             }
-            string[] paramIds = (string[])items[FirebaseConstants.KeyItemIdParam];
+            object[] paramIds = (object[])newItems[FirebaseConstants.KeyItemIdParam];
             Dictionary<string, object>[] result = new Dictionary<string, object>[paramIds.Length];
             for (int i = 0; i < paramIds.Length; i++) 
             {
                 Dictionary<string, object> dict = new Dictionary<string, object>();
-                foreach (var key in items.Keys)
+                foreach (var key in newItems.Keys)
                 {
-                    object[] list = (object[])items[key];
+                    object[] list = (object[])newItems[key];
                     dict[key] = list[i];
                 }
                 result[i] = dict;
@@ -218,6 +219,10 @@ namespace Tealium.RemoteCommands.Firebase
         /// <param name="eventName">Event name.</param>
         protected static string mapEventNames(string eventName)
         {
+            if (!eventsMap.ContainsKey(eventName))
+            {
+                return eventName;
+            }
             return eventsMap[eventName] ?? eventName;
         }
 
@@ -229,6 +234,10 @@ namespace Tealium.RemoteCommands.Firebase
         /// <param name="param">Parameter.</param>
         protected static string mapParams(string param)
         {
+            if (!parameters.ContainsKey(param))
+            {
+                return param;
+            }
             return parameters[param] ?? param;
         }
 

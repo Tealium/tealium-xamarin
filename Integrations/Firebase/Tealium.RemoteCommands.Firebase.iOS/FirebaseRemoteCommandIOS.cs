@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Tealium;
 using Tealium.Platform.iOS;
@@ -7,6 +8,7 @@ using Tealium.Platform.iOS;
 using Firebase.Analytics;
 using Firebase.Core;
 using Firebase;
+using Foundation;
 
 namespace Tealium.RemoteCommands.Firebase.iOS
 {
@@ -157,7 +159,7 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             }
             if (analyticsEnabled.HasValue)
             {
-                Analytics.SetAnalyticsCollectionEnabled(false);
+                Analytics.SetAnalyticsCollectionEnabled(analyticsEnabled.Value);
             }
             if (App.DefaultInstance == null)
             {
@@ -192,12 +194,58 @@ namespace Tealium.RemoteCommands.Firebase.iOS
         protected override void LogEvent(string eventName, Dictionary<string, object> eventParams)
         {
             //if(IsNullOrNullString(eventName)) { return; }
-            Dictionary<object, object> dict = new Dictionary<object, object>();
+            //Dictionary<object, object> dict = new Dictionary<object, object>();
+            //foreach (var key in eventParams.Keys)
+            //{
+            //    dict.Add(key, eventParams.GetValueOrDefault(key));
+            //    //var item = NSDictionary.FromObjectAndKey(new NSString(ParameterNamesConstants.ItemId), new NSString("some id"));
+            //    //var array = NSArray.FromNSObjects(item);
+            //    //dict.Add(key, array);
+            //}
+            Analytics.LogEvent(eventName, JSONToBundle(eventParams));
+        }
+
+        private NSDictionary<NSString,NSObject> JSONToBundle(Dictionary<string, object> eventParams)
+        {
+            if (eventParams.Count == 0)
+            {
+                return new NSDictionary<NSString, NSObject>();
+            }
+            NSMutableDictionary<NSString, NSObject> bundle = new NSMutableDictionary<NSString, NSObject>();
+
             foreach (var key in eventParams.Keys)
             {
-                dict.Add(key, eventParams.GetValueOrDefault(key));
+                NSString nsKey = new NSString(key);
+                NSObject nsValue;
+                switch (key)
+                {
+                    case var discount when discount == ParameterNamesConstants.Discount:
+                    case var price when price == ParameterNamesConstants.Price:
+                    case var shipping when shipping == ParameterNamesConstants.Shipping:
+                    case var tax when tax == ParameterNamesConstants.Tax:
+                    case var value when value == ParameterNamesConstants.Value:
+                        nsValue = NSObject.FromObject((double)eventParams[key]);
+                        break;
+                    case var level when level == ParameterNamesConstants.Level:
+                    case var numberOfNights when numberOfNights == ParameterNamesConstants.NumberOfNights:
+                    case var numberOfPassengers when numberOfPassengers == ParameterNamesConstants.NumberOfPassengers:
+                    case var numberOfRooms when numberOfRooms == ParameterNamesConstants.NumberOfRooms:
+                    case var quantity when quantity == ParameterNamesConstants.Quantity:
+                    case var score when score == ParameterNamesConstants.Score:
+                    case var success when success == ParameterNamesConstants.Success:
+                        nsValue = NSObject.FromObject((long)eventParams[key]);
+                        break;
+                    case var items when items == ParameterNamesConstants.Items:
+                        Dictionary<string, object>[] eventItems = (Dictionary<string, object>[])eventParams[key];
+                        nsValue = NSArray.FromObjects(eventItems.Select(item => JSONToBundle(item)).ToArray());
+                        break;
+                    default:
+                        nsValue = new NSString(eventParams[key].ToString());
+                        break;
+                }
+                bundle.Add(nsKey, nsValue);
             }
-            Analytics.LogEvent(eventName, dict);
+            return NSDictionary<NSString, NSObject>.FromObjectsAndKeys(bundle.Values, bundle.Keys);
         }
 
         protected override void SetScreenName(string screenName, string screenClass)
