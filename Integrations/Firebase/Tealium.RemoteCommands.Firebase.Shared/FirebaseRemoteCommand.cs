@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -193,10 +194,19 @@ namespace Tealium.RemoteCommands.Firebase
             }
             var paramId = items[FirebaseConstants.KeyItemIdParam];
             var newItems = new Dictionary<string, object>();
-            bool isArray = paramId is Array;
+            var isList = paramId is IList;
             foreach (var key in items.Keys)
             {
-                newItems[key] = isArray ? items[key] : new object[] { items[key] };
+                object[] list;
+                if (isList)
+                {
+                    list = new object[((IList)paramId).Count];
+                    ((IList)items[key]).CopyTo(list, 0);
+                } else
+                {
+                    list = new object[] { items[key] };
+                }
+                newItems[key] = list;
             }
             object[] paramIds = (object[])newItems[FirebaseConstants.KeyItemIdParam];
             Dictionary<string, object>[] result = new Dictionary<string, object>[paramIds.Length];

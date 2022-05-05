@@ -202,17 +202,17 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             //    //var array = NSArray.FromNSObjects(item);
             //    //dict.Add(key, array);
             //}
-            var bundle = JSONToBundle(eventParams);
-            Analytics.LogEvent(eventName, bundle);
+            var nsDictionary = JSONToNSDictionary(eventParams);
+            Analytics.LogEvent(eventName, nsDictionary);
         }
 
-        private NSDictionary<NSString,NSObject> JSONToBundle(Dictionary<string, object> eventParams)
+        private NSDictionary<NSString,NSObject> JSONToNSDictionary(Dictionary<string, object> eventParams)
         {
             if (eventParams.Count == 0)
             {
                 return new NSDictionary<NSString, NSObject>();
             }
-            NSMutableDictionary<NSString, NSObject> bundle = new NSMutableDictionary<NSString, NSObject>();
+            NSMutableDictionary<NSString, NSObject> nsDict = new NSMutableDictionary<NSString, NSObject>();
 
             foreach (var key in eventParams.Keys)
             {
@@ -220,33 +220,18 @@ namespace Tealium.RemoteCommands.Firebase.iOS
                 NSObject nsValue;
                 switch (key)
                 {
-                    case var discount when discount == ParameterNamesConstants.Discount:
-                    case var price when price == ParameterNamesConstants.Price:
-                    case var shipping when shipping == ParameterNamesConstants.Shipping:
-                    case var tax when tax == ParameterNamesConstants.Tax:
-                    case var value when value == ParameterNamesConstants.Value:
-                        nsValue = NSObject.FromObject(eventParams[key]);
-                        break;
-                    case var level when level == ParameterNamesConstants.Level:
-                    case var numberOfNights when numberOfNights == ParameterNamesConstants.NumberOfNights:
-                    case var numberOfPassengers when numberOfPassengers == ParameterNamesConstants.NumberOfPassengers:
-                    case var numberOfRooms when numberOfRooms == ParameterNamesConstants.NumberOfRooms:
-                    case var quantity when quantity == ParameterNamesConstants.Quantity:
-                    case var score when score == ParameterNamesConstants.Score:
-                    case var success when success == ParameterNamesConstants.Success:
-                        nsValue = NSObject.FromObject(eventParams[key]);
-                        break;
                     case var items when items == ParameterNamesConstants.Items:
                         Dictionary<string, object>[] eventItems = (Dictionary<string, object>[])eventParams[key];
-                        nsValue = NSArray.FromObjects(eventItems.Select(item => JSONToBundle(item)).ToArray());
+                        nsValue = NSArray.FromObjects(eventItems.Select(item => JSONToNSDictionary(item)).ToArray());
                         break;
                     default:
-                        nsValue = new NSString(eventParams[key].ToString());
+                        nsValue = NSObject.FromObject(eventParams[key]);
+                        //nsValue = new NSString(eventParams[key].ToString());
                         break;
                 }
-                bundle.Add(nsKey, nsValue);
+                nsDict.Add(nsKey, nsValue);
             }
-            return NSDictionary<NSString, NSObject>.FromObjectsAndKeys(bundle.Values, bundle.Keys);
+            return NSDictionary<NSString, NSObject>.FromObjectsAndKeys(nsDict.Values, nsDict.Keys);
         }
 
         protected override void SetScreenName(string screenName, string screenClass)
