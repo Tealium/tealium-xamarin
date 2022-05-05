@@ -134,14 +134,12 @@ namespace Tealium.RemoteCommands.Firebase
                                     System.Diagnostics.Debug.WriteLine("Stack Trace: " + e.StackTrace);
                                 }
                             }
-                            if (response.Payload.ContainsKey(FirebaseConstants.KeyItemsParams)) // Both if we manually formatted or if they come from the webview already
+                            if (eventParams.ContainsKey(FirebaseConstants.KeyItemsParams)) // Both if we manually formatted or if they come from the webview already
                             {
-                                Dictionary<string, object>[] items = response.Payload.GetValueForKey<Dictionary<string, object>[]>(FirebaseConstants.KeyItemsParams);
+                                Dictionary<string, object>[] items = (Dictionary<string,object>[])eventParams[FirebaseConstants.KeyItemsParams];
 
-                                eventParams[FirebaseConstants.KeyItemsParams] = items.Select(item => MapParamKeys(item));
+                                eventParams[FirebaseConstants.KeyItemsParams] = items.Select(item => MapParamKeys(item)).ToArray();
                             }
-                            else
-
                             if (!IsNullOrNullString(eventName))
                             {
                                 LogEvent(mapEventNames(eventName), MapParamKeys(eventParams));
@@ -189,6 +187,10 @@ namespace Tealium.RemoteCommands.Firebase
 
         private Dictionary<string, object>[] FormatItems(Dictionary<string,object> items)
         {
+            if (!items.ContainsKey(FirebaseConstants.KeyItemIdParam))
+            {
+                return new Dictionary<string, object>[] { items };
+            }
             var paramId = items[FirebaseConstants.KeyItemIdParam];
             var newItems = new Dictionary<string, object>();
             bool isArray = paramId is Array;

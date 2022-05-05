@@ -202,7 +202,8 @@ namespace Tealium.RemoteCommands.Firebase.iOS
             //    //var array = NSArray.FromNSObjects(item);
             //    //dict.Add(key, array);
             //}
-            Analytics.LogEvent(eventName, JSONToBundle(eventParams));
+            var bundle = JSONToBundle(eventParams);
+            Analytics.LogEvent(eventName, bundle);
         }
 
         private NSDictionary<NSString,NSObject> JSONToBundle(Dictionary<string, object> eventParams)
@@ -224,7 +225,7 @@ namespace Tealium.RemoteCommands.Firebase.iOS
                     case var shipping when shipping == ParameterNamesConstants.Shipping:
                     case var tax when tax == ParameterNamesConstants.Tax:
                     case var value when value == ParameterNamesConstants.Value:
-                        nsValue = NSObject.FromObject((double)eventParams[key]);
+                        nsValue = NSObject.FromObject(eventParams[key]);
                         break;
                     case var level when level == ParameterNamesConstants.Level:
                     case var numberOfNights when numberOfNights == ParameterNamesConstants.NumberOfNights:
@@ -233,7 +234,7 @@ namespace Tealium.RemoteCommands.Firebase.iOS
                     case var quantity when quantity == ParameterNamesConstants.Quantity:
                     case var score when score == ParameterNamesConstants.Score:
                     case var success when success == ParameterNamesConstants.Success:
-                        nsValue = NSObject.FromObject((long)eventParams[key]);
+                        nsValue = NSObject.FromObject(eventParams[key]);
                         break;
                     case var items when items == ParameterNamesConstants.Items:
                         Dictionary<string, object>[] eventItems = (Dictionary<string, object>[])eventParams[key];

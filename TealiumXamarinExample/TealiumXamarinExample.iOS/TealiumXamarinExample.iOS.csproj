@@ -124,8 +124,8 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <BundleResource Include="GoogleService-Info.plist" />
     <BundleResource Include="Resources\firebase.json" />
+    <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
