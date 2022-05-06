@@ -24,9 +24,12 @@ namespace Tealium.RemoteCommands.Firebase.Droid
 
         private static FirebaseAnalytics firebaseAnalytics;
 
-        public override string Path => throw new NotImplementedException();
+        private string path;
+        private string url;
 
-        public override string Url => throw new NotImplementedException();
+        public override string Path => path;
+
+        public override string Url => url;
 
         static FirebaseRemoteCommandDroid()
         {
@@ -105,7 +108,6 @@ namespace Tealium.RemoteCommands.Firebase.Droid
             parameters.Add("param_item_category5", FirebaseAnalytics.Param.ItemCategory5);
             parameters.Add("param_item_id", FirebaseAnalytics.Param.ItemId);
             parameters.Add("param_item_list", FirebaseAnalytics.Param.ItemList);
-            parameters.Add("param_item_list", FirebaseAnalytics.Param.ItemList);
             parameters.Add("param_item_list_id", FirebaseAnalytics.Param.ItemListId);
             parameters.Add("param_item_list_name", FirebaseAnalytics.Param.ItemListName);
             parameters.Add("param_item_location_id", FirebaseAnalytics.Param.ItemLocationId);
@@ -148,8 +150,10 @@ namespace Tealium.RemoteCommands.Firebase.Droid
         }
 
 
-        public FirebaseRemoteCommandDroid(Application app) : base()
+        public FirebaseRemoteCommandDroid(Application app, string path, string url) : base()
         {
+            this.path = path;
+            this.url = url;
             firebaseAnalytics = FirebaseAnalytics.GetInstance(app.ApplicationContext);
 
             Application.IActivityLifecycleCallbacks cb = new LifecycleCallbacks();
