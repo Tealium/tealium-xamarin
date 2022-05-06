@@ -28,7 +28,7 @@ namespace TealiumXamarinExample.Teal
                                                          TealiumConstants.PROFILE_NAME,
                                                          TealiumConstants.ENVIRONMENT,
                                                          new List<Dispatchers> {
-                                                             Dispatchers.Collect, Dispatchers.RemoteCommands, Dispatchers.TagManagement
+                                                             Dispatchers.Collect, Dispatchers.RemoteCommands//, Dispatchers.TagManagement
                                                          },
                                                          new List<Collectors> {
                                                              Collectors.LifeCycle, Collectors.AppData
