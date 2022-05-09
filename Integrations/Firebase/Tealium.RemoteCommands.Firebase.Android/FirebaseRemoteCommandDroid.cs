@@ -1,25 +1,15 @@
 ﻿using System;
-
 using System.Collections.Generic;
-
-
 using Tealium;
-
-
 using Android.App;
-
 using Android.OS;
-
-
 using Firebase.Analytics;
-
 
 namespace Tealium.RemoteCommands.Firebase.Droid
 {
 
     public class FirebaseRemoteCommandDroid : FirebaseRemoteCommand, IRemoteCommand
     {
-
         private static Activity currentActivity;
 
         private static FirebaseAnalytics firebaseAnalytics;
@@ -163,7 +153,6 @@ namespace Tealium.RemoteCommands.Firebase.Droid
 
         protected override void Configure(int? sessionTimeoutDuration, bool? analyticsEnabled, string loggerLevel)
         {
-
             if (sessionTimeoutDuration.HasValue)
             {
                 firebaseAnalytics?.SetSessionTimeoutDuration(sessionTimeoutDuration.Value);
@@ -223,9 +212,7 @@ namespace Tealium.RemoteCommands.Firebase.Droid
             {
                 firebaseAnalytics?.LogEvent(eventName, JSONToBundle(eventParams));
             }
-
         }
-
 
         protected override void SetScreenName(string screenName, string screenClass)
         {
@@ -236,78 +223,56 @@ namespace Tealium.RemoteCommands.Firebase.Droid
             });
         }
 
-
         protected override void SetUserProperty(string propertyName, string propertyValue)
         {
-
             firebaseAnalytics?.SetUserProperty(propertyName, propertyValue);
-
         }
-
 
         protected override void SetUserId(string userId)
         {
-
             firebaseAnalytics?.SetUserId(userId);
-
         }
-
-
 
         // Setup lifecycle callbacks to init FirebaseAnalytics. You may prefer to do this manually.
 
         private class LifecycleCallbacks : Java.Lang.Object, Application.IActivityLifecycleCallbacks
         {
-
             //public IntPtr Handle => throw new NotImplementedException();
-
-
             public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
             {
-
                 currentActivity = activity;
-
                 firebaseAnalytics = FirebaseAnalytics.GetInstance(currentActivity.ApplicationContext);
-
             }
-
 
             public void OnActivityDestroyed(Activity activity)
             {
 
             }
 
-
             public void OnActivityPaused(Activity activity)
             {
 
             }
-
 
             public void OnActivityResumed(Activity activity)
             {
 
             }
 
-
             public void OnActivitySaveInstanceState(Activity activity, Bundle outState)
             {
 
             }
-
 
             public void OnActivityStarted(Activity activity)
             {
 
             }
 
-
             public void OnActivityStopped(Activity activity)
             {
 
             }
-
-
         }
 
     }

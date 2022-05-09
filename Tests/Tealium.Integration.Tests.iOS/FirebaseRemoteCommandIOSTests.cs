@@ -47,379 +47,203 @@ namespace Tealium.Integration.Tests.iOS
             Assert.NotNull(command.Name);
             Assert.NotNull(command.Version);
             Assert.True(command.Name.StartsWith("xamarin-"));
-
         }
-
         public static readonly String CommandId = "firebaseanalytics";
-
         public static readonly String ResponseId = "none";
 
-
         public NSMutableDictionary<NSString, NSObject> InitPayloadWithNoProperties
-
         {
-
             get
             {
-
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
-
                 json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.Config), new NSString(FirebaseConstants.KeyCommandName));
-
                 return json;
-
             }
-
         }
-
 
         public NSMutableDictionary<NSString, NSObject> InitPayloadWithAllProperties
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = InitPayloadWithNoProperties;
-
                 json.SetValueForKey(NSObject.FromObject(10000), new NSString(FirebaseConstants.KeySessionTimeout));
-
                 json.SetValueForKey(NSObject.FromObject(false), new NSString(FirebaseConstants.KeyAnalyticsEnabled));
-
                 return json;
-
             }
-
         }
-
 
         public NSMutableDictionary<NSString, NSObject> InitPayloadWithIncorrectProperties
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = InitPayloadWithNoProperties;
-
                 json.SetValueForKey(NSObject.FromObject("string"), new NSString(FirebaseConstants.KeySessionTimeout));
-
                 json.SetValueForKey(NSObject.FromObject("test"), new NSString(FirebaseConstants.KeyAnalyticsEnabled));
-
                 return json;
-
             }
-
         }
-
-
 
         public NSMutableDictionary<NSString, NSObject> LogEventWithNoParams
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
-
                 json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.LogEvent), new NSString(FirebaseConstants.KeyCommandName));
-
                 json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseConstants.KeyEventName));
 
-
                 return json;
-
             }
-
         }
-
 
         public NSMutableDictionary<NSString, NSObject> LogEventWithTestParams
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = LogEventWithNoParams;
-
                 NSMutableDictionary<NSString, NSObject> parameters = new NSMutableDictionary<NSString, NSObject>();
-
                 parameters.SetValueForKey(NSObject.FromObject("my content"), new NSString("param_content"));
-
                 parameters.SetValueForKey(NSObject.FromObject("my content type"), new NSString("param_content_type"));
 
-
                 json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseConstants.KeyEventName));
-
                 json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseConstants.JSONKeyEventParams));
 
-
                 return json;
-
             }
-
         }
-
 
         public NSMutableDictionary<NSString, NSObject> LogEventWithNullParams
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = LogEventWithNoParams;
-
                 json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseConstants.KeyEventName));
-
                 json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.JSONKeyEventParams));
 
-
                 return json;
-
             }
-
         }
-
 
         public NSMutableDictionary<NSString, NSObject> SetScreenWithValidProperties
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
-
                 json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetScreenName), new NSString(FirebaseConstants.KeyCommandName));
-
                 json.SetValueForKey(NSObject.FromObject("some screen name"), new NSString(FirebaseConstants.KeyScreenName));
-
                 json.SetValueForKey(NSObject.FromObject("screen class"), new NSString(FirebaseConstants.KeyScreenClass));
 
-
                 return json;
-
             }
-
         }
-
 
         public NSMutableDictionary<NSString, NSObject> SetScreenWithInvalidProperties
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
-
                 json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetScreenName), new NSString(FirebaseConstants.KeyCommandName));
-
                 json.SetValueForKey(NSObject.FromObject(10), new NSString(FirebaseConstants.KeyScreenName));
-
                 json.SetValueForKey(NSObject.FromObject(true), new NSString(FirebaseConstants.KeyScreenClass));
 
-
                 return json;
-
             }
-
         }
-
 
         public NSMutableDictionary<NSString, NSObject> SetUserIdValid
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
-
                 json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetUserId), new NSString(FirebaseConstants.KeyCommandName));
-
                 json.SetValueForKey(NSObject.FromObject("James"), new NSString(FirebaseConstants.KeyUserId));
 
-
                 return json;
-
             }
-
         }
-
 
         public NSMutableDictionary<NSString, NSObject> SetUserIdInvalid
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
-
                 json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetUserId), new NSString(FirebaseConstants.KeyCommandName));
-
                 json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.KeyUserId));
 
-
-
                 return json;
-
             }
-
         }
-
 
         public NSMutableDictionary<NSString, NSObject> SetUserPropertyValid
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
-
                 json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetUserProperty), new NSString(FirebaseConstants.KeyCommandName));
-
                 json.SetValueForKey(NSObject.FromObject("property name"), new NSString(FirebaseConstants.KeyUserPropertyName));
-
                 json.SetValueForKey(NSObject.FromObject("property value"), new NSString(FirebaseConstants.KeyUserPropertyValue));
 
-
-
                 return json;
-
             }
-
         }
-
 
         public NSMutableDictionary<NSString, NSObject> SetUserPropertyInvalid
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
-
                 json.SetValueForKey(NSObject.FromObject(FirebaseConstants.Commands.SetUserProperty), new NSString(FirebaseConstants.KeyCommandName));
-
                 json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.KeyUserPropertyName));
-
                 json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.KeyUserPropertyValue));
 
-
-
                 return json;
-
             }
-
         }
-
 
         public NSMutableDictionary<NSString, NSObject> CompositeAllValidCommands
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
-
                 json.SetValueForKey(NSObject.FromObject(String.Join(',',
-
                             new string[] { FirebaseConstants.Commands.Config,
-
                                             FirebaseConstants.Commands.SetUserId,
-
                                             FirebaseConstants.Commands.SetUserProperty,
-
                                             FirebaseConstants.Commands.SetScreenName,
-
                                             FirebaseConstants.Commands.LogEvent })),
-
                                              new NSString(FirebaseConstants.KeyCommandName));
-
                 json.SetValueForKey(NSObject.FromObject(false), new NSString(FirebaseConstants.KeyAnalyticsEnabled));
-
                 json.SetValueForKey(NSObject.FromObject("property name"), new NSString(FirebaseConstants.KeyUserPropertyName));
-
                 json.SetValueForKey(NSObject.FromObject("property value"), new NSString(FirebaseConstants.KeyUserPropertyValue));
-
                 json.SetValueForKey(NSObject.FromObject("James"), new NSString(FirebaseConstants.KeyUserId));
-
                 json.SetValueForKey(NSObject.FromObject("screen_name"), new NSString(FirebaseConstants.KeyScreenName));
-
                 json.SetValueForKey(NSObject.FromObject("screen class"), new NSString(FirebaseConstants.KeyScreenClass));
-
                 NSMutableDictionary parameters = new NSMutableDictionary();
-
                 parameters.SetValueForKey(NSObject.FromObject("my content"), new NSString("param_content"));
-
                 parameters.SetValueForKey(NSObject.FromObject("my content type"), new NSString("param_content_type"));
 
-
                 json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseConstants.KeyEventName));
-
                 json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseConstants.JSONKeyEventParams));
-
                 return json;
-
             }
-
         }
 
-
         public NSMutableDictionary<NSString, NSObject> CompositeSomeInvalidCommands
-
         {
-
             get
-
             {
-
                 NSMutableDictionary<NSString, NSObject> json = new NSMutableDictionary<NSString, NSObject>();
-
                 json.SetValueForKey(NSObject.FromObject(String.Join(',',
-
                             new string[] { FirebaseConstants.Commands.Config,
-
                                             FirebaseConstants.Commands.SetUserId,
-
                                             FirebaseConstants.Commands.SetUserProperty,
-
                                             FirebaseConstants.Commands.SetScreenName,
-
                                             FirebaseConstants.Commands.LogEvent })),
-
                                              new NSString(FirebaseConstants.KeyCommandName));
-
                 json.SetValueForKey(NSObject.FromObject(false), new NSString(FirebaseConstants.KeyAnalyticsEnabled));
-
                 json.SetValueForKey(NSObject.FromObject("property name"), new NSString(FirebaseConstants.KeyUserPropertyName));
-
                 json.SetValueForKey(NSObject.FromObject("property value"), new NSString(FirebaseConstants.KeyUserPropertyValue));
-
                 //json.SetValueForKey(FirebaseRemoteCommand.KeyUserId, "James");//missing
-
                 json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.KeyScreenName));
-
                 json.SetValueForKey(NSObject.FromObject(null), new NSString(FirebaseConstants.KeyScreenClass));
 
                 NSMutableDictionary parameters = new NSMutableDictionary();
@@ -430,146 +254,79 @@ namespace Tealium.Integration.Tests.iOS
 
                 //test empty params.
 
-
                 json.SetValueForKey(NSObject.FromObject("event_campaign_details"), new NSString(FirebaseConstants.KeyEventName));
-
                 json.SetValueForKey(NSObject.FromObject(parameters), new NSString(FirebaseConstants.JSONKeyEventParams));
-
                 return json;
-
             }
-
         }
 
-
         public override IRemoteCommandResponse GetResponseForPayload(Payloads payloadType)
-
         {
-
             NSMutableDictionary<NSString, NSObject> json;
-
 
             switch (payloadType)
             {
-
                 case Payloads.InitWithNoProperties:
-
                     json = InitPayloadWithNoProperties;
-
                     break;
-
                 case Payloads.InitWithAllProperties:
-
                     json = InitPayloadWithAllProperties;
-
                     break;
-
                 case Payloads.InitWithIncorrectProperties:
-
                     json = InitPayloadWithIncorrectProperties;
-
                     break;
-
                 case Payloads.LogEventWithNoParams:
-
                     json = LogEventWithNoParams;
-
                     break;
-
                 case Payloads.LogEventWithTestParams:
-
                     json = LogEventWithNoParams;
-
                     break;
-
                 case Payloads.LogEventWithNullParams:
-
                     json = LogEventWithNullParams;
-
                     break;
-
                 case Payloads.SetScreenWithValidParams:
-
                     json = SetScreenWithValidProperties;
-
                     break;
-
                 case Payloads.SetScreenWithInvalidParams:
-
                     json = SetScreenWithInvalidProperties;
-
                     break;
-
                 case Payloads.SetUserIdValid:
-
                     json = SetUserIdValid;
-
                     break;
-
                 case Payloads.SetUserIdInvalid:
-
                     json = SetUserIdInvalid;
-
                     break;
-
                 case Payloads.SetUserPropertyValid:
-
                     json = SetUserPropertyValid;
-
                     break;
-
                 case Payloads.SetUserPropertyInvalid:
-
                     json = SetUserPropertyInvalid;
-
                     break;
-
                 case Payloads.CompositeAllValidCommands:
-
                     json = CompositeAllValidCommands;
-
                     break;
-
                 case Payloads.CompositeSomeInvalidCommands:
-
                     json = CompositeSomeInvalidCommands;
-
                     break;
-
                 default:
-
                     json = new NSMutableDictionary<NSString, NSObject>();
-
                     break;
-
             }
-
             return new RemoteCommandResponseIOS(new RemoteCommandResponseWrapper(new NSDictionary<NSString, NSObject>(json.Keys, json.Values)), CommandId);
         }
 
-
         protected override IRemoteCommand GetFirebaseRemoteCommand()
-
         {
-
             return new MockFirebaseRemoteCommandIOS();
-
         }
-
 
         protected override IMockFirebaseRemoteCommand GetMockFirebaseRemoteCommand()
-
         {
-
             return new MockFirebaseRemoteCommandIOS();
-
         }
 
-
         public class MockFirebaseRemoteCommandIOS : FirebaseRemoteCommandIOS, IMockFirebaseRemoteCommand
-
         {
-
             public MockFirebaseRemoteCommandIOS()
                 : this(new RemoteCommandTypeWrapper())
             {
