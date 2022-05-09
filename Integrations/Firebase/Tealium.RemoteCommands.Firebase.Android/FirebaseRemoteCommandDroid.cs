@@ -155,7 +155,6 @@ namespace Tealium.RemoteCommands.Firebase.Droid
             this.path = path;
             this.url = url;
             firebaseAnalytics = FirebaseAnalytics.GetInstance(app.ApplicationContext);
-
             Application.IActivityLifecycleCallbacks cb = new LifecycleCallbacks();
 
             app.RegisterActivityLifecycleCallbacks(cb);
@@ -190,7 +189,7 @@ namespace Tealium.RemoteCommands.Firebase.Droid
                     case FirebaseAnalytics.Param.Shipping:
                     case FirebaseAnalytics.Param.Tax:
                     case FirebaseAnalytics.Param.Value:
-                        bundle.PutDouble(key, (double)eventParams[key]);
+                        bundle.PutDouble(key, Convert.ToDouble(eventParams[key]));
                         break;
                     case FirebaseAnalytics.Param.Level:
                     case FirebaseAnalytics.Param.NumberOfNights:
@@ -199,7 +198,7 @@ namespace Tealium.RemoteCommands.Firebase.Droid
                     case FirebaseAnalytics.Param.Quantity:
                     case FirebaseAnalytics.Param.Score:
                     case FirebaseAnalytics.Param.Success:
-                        bundle.PutLong(key, (long)eventParams[key]);
+                        bundle.PutLong(key, Convert.ToInt64(eventParams[key]));
                         break;
                     case FirebaseAnalytics.Param.Items:
                         Dictionary<string, object>[] items = (Dictionary<string,object>[])eventParams[key];
