@@ -257,6 +257,12 @@
     <Reference Include="Xamarin.GooglePlayServices.Measurement.Sdk">
       <HintPath>..\..\packages\Xamarin.GooglePlayServices.Measurement.Sdk.118.0.3\lib\monoandroid90\Xamarin.GooglePlayServices.Measurement.Sdk.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.AndroidX.MediaRouter">
+      <HintPath>..\..\packages\Xamarin.AndroidX.MediaRouter.1.2.0\lib\monoandroid90\Xamarin.AndroidX.MediaRouter.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.AndroidX.Palette">
+      <HintPath>..\..\packages\Xamarin.AndroidX.Palette.1.0.0.5\lib\monoandroid90\Xamarin.AndroidX.Palette.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -372,4 +378,6 @@
   <Import Project="..\..\packages\Xamarin.GooglePlayServices.Measurement.Impl.118.0.3\build\MonoAndroid90\Xamarin.GooglePlayServices.Measurement.Impl.targets" Condition="Exists('..\..\packages\Xamarin.GooglePlayServices.Measurement.Impl.118.0.3\build\MonoAndroid90\Xamarin.GooglePlayServices.Measurement.Impl.targets')" />
   <Import Project="..\..\packages\Xamarin.GooglePlayServices.Measurement.118.0.3\build\MonoAndroid90\Xamarin.GooglePlayServices.Measurement.targets" Condition="Exists('..\..\packages\Xamarin.GooglePlayServices.Measurement.118.0.3\build\MonoAndroid90\Xamarin.GooglePlayServices.Measurement.targets')" />
   <Import Project="..\..\packages\Xamarin.GooglePlayServices.Measurement.Sdk.118.0.3\build\MonoAndroid90\Xamarin.GooglePlayServices.Measurement.Sdk.targets" Condition="Exists('..\..\packages\Xamarin.GooglePlayServices.Measurement.Sdk.118.0.3\build\MonoAndroid90\Xamarin.GooglePlayServices.Measurement.Sdk.targets')" />
+  <Import Project="..\..\packages\Xamarin.AndroidX.MediaRouter.1.2.0\build\monoandroid90\Xamarin.AndroidX.MediaRouter.targets" Condition="Exists('..\..\packages\Xamarin.AndroidX.MediaRouter.1.2.0\build\monoandroid90\Xamarin.AndroidX.MediaRouter.targets')" />
+  <Import Project="..\..\packages\Xamarin.AndroidX.Palette.1.0.0.5\build\monoandroid90\Xamarin.AndroidX.Palette.targets" Condition="Exists('..\..\packages\Xamarin.AndroidX.Palette.1.0.0.5\build\monoandroid90\Xamarin.AndroidX.Palette.targets')" />
 </Project>
