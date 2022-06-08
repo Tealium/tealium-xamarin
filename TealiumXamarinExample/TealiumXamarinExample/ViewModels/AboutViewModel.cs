@@ -21,7 +21,7 @@ namespace TealiumXamarinExample.ViewModels
             {
                 Teal.Helper.DefaultInstance.Track(new TealiumEvent("ecommerce_purchase", new Dictionary<string, object>{
                     { "order_id", 679000 },
-                    { "event_title", "ecommerce_purchase" },
+                    { "event_title", "event_purchase" },
                     { "product_name", new string[]{"some_name", "2" } },
                     { "product_id", new string[]{"some_id", "2" } },
                     { "product_unit_price", new long[] {20, 10} },
