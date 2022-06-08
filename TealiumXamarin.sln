@@ -43,8 +43,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tealium.Integration.Tests.i
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Tealium.Integration.Tests.Common", "Tests\Tealium.Integration.Tests.Common\Tealium.Integration.Tests.Common.shproj", "{D6271923-827D-4B70-A0F1-D992BBE4D010}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tealium.Orig.Integration.Tests.Droid", "Tests\Tealium.Integration.Tests.Droid\Tealium.Orig.Integration.Tests.Droid.csproj", "{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tealium.Integration.Tests.Droid", "Tests\Tealium.Integration.Tests.Droid\Tealium.Integration.Tests.Droid.csproj", "{ABDC9AC6-C8C7-420C-9C81-7A025B554D37}"
 EndProject
 Global
@@ -225,18 +223,6 @@ Global
 		{2CB804D7-78B2-4A80-BAFE-C42DEFD69D21}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{2CB804D7-78B2-4A80-BAFE-C42DEFD69D21}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{2CB804D7-78B2-4A80-BAFE-C42DEFD69D21}.Debug|iPhone.Build.0 = Debug|iPhone
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Release|iPhone.Build.0 = Release|Any CPU
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{ABDC9AC6-C8C7-420C-9C81-7A025B554D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ABDC9AC6-C8C7-420C-9C81-7A025B554D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABDC9AC6-C8C7-420C-9C81-7A025B554D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -266,7 +252,6 @@ Global
 		{EAA69A5F-296F-4109-8761-4C2C3B050CAC} = {BEFED147-2248-4024-A6F7-140A160ABCF5}
 		{2CB804D7-78B2-4A80-BAFE-C42DEFD69D21} = {F0F2D4F3-7D12-4E2D-A3C2-B67993861E21}
 		{D6271923-827D-4B70-A0F1-D992BBE4D010} = {F0F2D4F3-7D12-4E2D-A3C2-B67993861E21}
-		{7E89ABBF-1E2C-4FE7-AA1B-6599EB4856A2} = {F0F2D4F3-7D12-4E2D-A3C2-B67993861E21}
 		{ABDC9AC6-C8C7-420C-9C81-7A025B554D37} = {F0F2D4F3-7D12-4E2D-A3C2-B67993861E21}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
