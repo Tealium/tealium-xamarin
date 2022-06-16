@@ -15,6 +15,42 @@ namespace Tealium.Integration.Tests.Droid
     [TestFixture]
     public class FirebaseRemoteCommandTestsDroid : FirebaseRemoteCommandTestsBase
     {
+
+        [Test]
+        public void TestWebTypeParameter()
+        {
+            var command = new FirebaseRemoteCommandDroid(MainActivity.CurrentApplication, null, null);
+            Assert.Null(command.Path);
+            Assert.Null(command.Url);
+        }
+
+        [Test]
+        public void TestUrlTypeParameter()
+        {
+            string url = "https://www.google.com";
+            var command = new FirebaseRemoteCommandDroid(MainActivity.CurrentApplication, null, url);
+            Assert.Null(command.Path);
+            Assert.AreEqual(command.Url, url);
+        }
+
+        [Test]
+        public void TestLocalTypeParameter()
+        {
+            string path = "file://path";
+            var command = new FirebaseRemoteCommandDroid(MainActivity.CurrentApplication, path, null);
+            Assert.Null(command.Url);
+            Assert.AreEqual(command.Path, path);
+        }
+
+        [Test]
+        public void TestNameAndVersion()
+        {
+            var command = new FirebaseRemoteCommandDroid(MainActivity.CurrentApplication, null, null);
+            Assert.NotNull(command.Name);
+            Assert.NotNull(command.Version);
+            Assert.True(command.Name.StartsWith("xamarin-"));
+        }
+
         public static readonly String CommandId = "firebaseanalytics";
         public static readonly String ResponseId = "none";
 
