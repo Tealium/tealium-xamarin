@@ -131,7 +131,7 @@ namespace Tealium.Integration.Tests.Common
             IMockFirebaseRemoteCommand mockFirebaseRemoteCommand = (IMockFirebaseRemoteCommand)remoteCommand;
             Assert.True(mockFirebaseRemoteCommand.GetConfigCalls == 0);
             Assert.True(mockFirebaseRemoteCommand.GetUserIdCalls == 0);
-            Assert.True(mockFirebaseRemoteCommand.GetLogEventCalls == 0);
+            Assert.True(mockFirebaseRemoteCommand.GetLogEventCalls == 1);
             Assert.True(mockFirebaseRemoteCommand.GetScreenNameCalls == 1);
             Assert.True(mockFirebaseRemoteCommand.GetUserPropertyCalls == 0);
         }
@@ -148,7 +148,7 @@ namespace Tealium.Integration.Tests.Common
             IMockFirebaseRemoteCommand mockFirebaseRemoteCommand = (IMockFirebaseRemoteCommand)remoteCommand;
             Assert.True(mockFirebaseRemoteCommand.GetConfigCalls == 0);
             Assert.True(mockFirebaseRemoteCommand.GetUserIdCalls == 0);
-            Assert.True(mockFirebaseRemoteCommand.GetLogEventCalls == 0);
+            Assert.True(mockFirebaseRemoteCommand.GetLogEventCalls == 1);
             Assert.True(mockFirebaseRemoteCommand.GetScreenNameCalls == 1);
             Assert.True(mockFirebaseRemoteCommand.GetUserPropertyCalls == 0);
         }
@@ -233,7 +233,7 @@ namespace Tealium.Integration.Tests.Common
             IMockFirebaseRemoteCommand mockFirebaseRemoteCommand = (IMockFirebaseRemoteCommand)remoteCommand;
             Assert.True(mockFirebaseRemoteCommand.GetConfigCalls == 1);
             Assert.True(mockFirebaseRemoteCommand.GetUserIdCalls == 1);
-            Assert.True(mockFirebaseRemoteCommand.GetLogEventCalls == 1);
+            Assert.True(mockFirebaseRemoteCommand.GetLogEventCalls == 2);
             Assert.True(mockFirebaseRemoteCommand.GetScreenNameCalls == 1);
             Assert.True(mockFirebaseRemoteCommand.GetUserPropertyCalls == 1);
         }

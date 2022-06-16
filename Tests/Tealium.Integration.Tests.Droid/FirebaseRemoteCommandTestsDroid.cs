@@ -279,7 +279,7 @@ namespace Tealium.Integration.Tests.Droid
                     break;
             }
 
-            
+
             RemoteCommand.Response response = new RemoteCommand.Response(null, CommandId, ResponseId, json);
 
             return new RemoteCommandResponseDroid(response);
