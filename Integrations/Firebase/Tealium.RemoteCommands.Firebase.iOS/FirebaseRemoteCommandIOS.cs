@@ -238,7 +238,7 @@ namespace Tealium.RemoteCommands.Firebase.iOS
         {
             //if(IsNullOrNullString(screenName) || IsNullOrNullString(screenClass)) { return; }
             //Analytics.SetScreenNameAndClass(screenName, screenClass);
-            Analytics.LogEvent(EventNamesConstants.ScreenView, new Dictionary<object, object>
+            LogEvent(EventNamesConstants.ScreenView, new Dictionary<string, object>
             {
                 { ParameterNamesConstants.ScreenName, screenName },
                 { ParameterNamesConstants.ScreenClass, screenClass }
