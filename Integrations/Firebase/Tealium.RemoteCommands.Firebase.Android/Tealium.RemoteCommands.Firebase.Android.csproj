@@ -10,7 +10,7 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>Tealium.RemoteCommands.Firebase</RootNamespace>
-    <AssemblyName>Tealium.RemoteCommands.Firebase</AssemblyName>
+    <AssemblyName>Tealium.RemoteCommands.Firebase.Android</AssemblyName>
     <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -201,8 +201,10 @@
       <Project>{18E57B5C-52CD-439A-ACF8-9ABBB2110037}</Project>
       <Name>Tealium.Platform.Droid</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tealium.RemoteCommands.Firebase.Common\Tealium.RemoteCommands.Firebase.Common.csproj">
+      <Name>Tealium.RemoteCommands.Firebase.Common</Name>
+    </ProjectReference>
   </ItemGroup>
-  <Import Project="..\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems" Label="Shared" Condition="Exists('..\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.targets')" />
   <Import Project="..\..\..\packages\Xamarin.AndroidX.Arch.Core.Runtime.2.1.0.1\build\monoandroid90\Xamarin.AndroidX.Arch.Core.Runtime.targets" Condition="Exists('..\..\..\packages\Xamarin.AndroidX.Arch.Core.Runtime.2.1.0.1\build\monoandroid90\Xamarin.AndroidX.Arch.Core.Runtime.targets')" />

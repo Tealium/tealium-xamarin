@@ -131,13 +131,15 @@
     <ProjectReference Include="..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.iOS\Tealium.RemoteCommands.Firebase.iOS.csproj">
       <Name>Tealium.RemoteCommands.Firebase.iOS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Common\Tealium.RemoteCommands.Firebase.Common.csproj">
+      <Name>Tealium.RemoteCommands.Firebase.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
   <Import Project="..\Tealium.Integration.Tests.Common\Tealium.Integration.Tests.Common.projitems" Label="Shared" Condition="Exists('..\Tealium.Integration.Tests.Common\Tealium.Integration.Tests.Common.projitems')" />
   <Import Project="..\Tealium.Tests.Common\Tealium.Tests.Common.projitems" Label="Shared" Condition="Exists('..\Tealium.Tests.Common\Tealium.Tests.Common.projitems')" />
-  <Import Project="..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems" Label="Shared" Condition="Exists('..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Build.Download.0.11.0\build\Xamarin.Build.Download.targets" Condition="Exists('..\..\packages\Xamarin.Build.Download.0.11.0\build\Xamarin.Build.Download.targets')" />
   <Import Project="..\..\packages\Xamarin.Firebase.iOS.Core.8.10.0\build\Xamarin.Firebase.iOS.Core.targets" Condition="Exists('..\..\packages\Xamarin.Firebase.iOS.Core.8.10.0\build\Xamarin.Firebase.iOS.Core.targets')" />

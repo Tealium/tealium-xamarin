@@ -164,10 +164,12 @@
       <Project>{81FB4FA4-13EE-47D5-9290-E4A00FC2F7D5}</Project>
       <Name>Tealium.RemoteCommands.Firebase.Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Common\Tealium.RemoteCommands.Firebase.Common.csproj">
+      <Name>Tealium.RemoteCommands.Firebase.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\Tealium.Integration.Tests.Common\Tealium.Integration.Tests.Common.projitems" Label="Shared" Condition="Exists('..\Tealium.Integration.Tests.Common\Tealium.Integration.Tests.Common.projitems')" />
   <Import Project="..\Tealium.Tests.Common\Tealium.Tests.Common.projitems" Label="Shared" Condition="Exists('..\Tealium.Tests.Common\Tealium.Tests.Common.projitems')" />
-  <Import Project="..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems" Label="Shared" Condition="Exists('..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.

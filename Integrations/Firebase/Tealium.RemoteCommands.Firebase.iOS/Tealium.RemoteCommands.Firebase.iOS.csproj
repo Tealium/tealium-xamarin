@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>Tealium.RemoteCommands.Firebase</RootNamespace>
-    <AssemblyName>Tealium.RemoteCommands.Firebase</AssemblyName>
+    <AssemblyName>Tealium.RemoteCommands.Firebase.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <ReleaseVersion>2.0.0</ReleaseVersion>
   </PropertyGroup>
@@ -29,6 +29,7 @@
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
     <MtouchVerbosity></MtouchVerbosity>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -85,8 +86,10 @@
       <Project>{EB758981-90C4-4B17-836D-3E242FE6D432}</Project>
       <Name>Tealium.Platform.iOS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tealium.RemoteCommands.Firebase.Common\Tealium.RemoteCommands.Firebase.Common.csproj">
+      <Name>Tealium.RemoteCommands.Firebase.Common</Name>
+    </ProjectReference>
   </ItemGroup>
-  <Import Project="..\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems" Label="Shared" Condition="Exists('..\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.targets')" />
   <Import Project="..\..\..\packages\Xamarin.Build.Download.0.11.0\build\Xamarin.Build.Download.targets" Condition="Exists('..\..\..\packages\Xamarin.Build.Download.0.11.0\build\Xamarin.Build.Download.targets')" />

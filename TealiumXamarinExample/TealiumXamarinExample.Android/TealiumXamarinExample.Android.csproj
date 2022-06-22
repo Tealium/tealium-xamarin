@@ -157,6 +157,9 @@
     <ProjectReference Include="..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Android\Tealium.RemoteCommands.Firebase.Android.csproj">
       <Name>Tealium.RemoteCommands.Firebase.Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Common\Tealium.RemoteCommands.Firebase.Common.csproj">
+      <Name>Tealium.RemoteCommands.Firebase.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <GoogleServicesJson Include="Resources\google-services.json">
@@ -166,6 +169,5 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\firebase.json" />
   </ItemGroup>
-  <Import Project="..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems" Label="Shared" Condition="Exists('..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Shared\Tealium.RemoteCommands.Firebase.Shared.projitems')" />
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
