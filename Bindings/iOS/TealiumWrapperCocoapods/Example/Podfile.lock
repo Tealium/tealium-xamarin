@@ -1,17 +1,14 @@
 PODS:
-  - tealium-swift (2.6.3):
-    - tealium-swift/TealiumFull (= 2.6.3)
-  - tealium-swift/Collect (2.6.3):
+  - tealium-swift/Collect (2.6.5):
     - tealium-swift/Core
-  - tealium-swift/Core (2.6.3)
-  - tealium-swift/Lifecycle (2.6.3):
+  - tealium-swift/Core (2.6.5)
+  - tealium-swift/Lifecycle (2.6.5):
     - tealium-swift/Core
-  - tealium-swift/RemoteCommands (2.6.3):
+  - tealium-swift/RemoteCommands (2.6.5):
     - tealium-swift/Core
-  - tealium-swift/TagManagement (2.6.3):
+  - tealium-swift/TagManagement (2.6.5):
     - tealium-swift/Core
-  - tealium-swift/TealiumFull (2.6.3)
-  - tealium-swift/VisitorService (2.6.3):
+  - tealium-swift/VisitorService (2.6.5):
     - tealium-swift/Core
   - TealiumWrapperCocoapods (0.1.0):
     - tealium-swift/Collect (~> 2.6)
@@ -22,25 +19,20 @@ PODS:
     - tealium-swift/VisitorService (~> 2.6)
 
 DEPENDENCIES:
-  - tealium-swift (from `https://github.com/tealium/tealium-swift.git`, branch `remoteCommandsFix`)
   - TealiumWrapperCocoapods (from `../`)
 
+SPEC REPOS:
+  trunk:
+    - tealium-swift
+
 EXTERNAL SOURCES:
-  tealium-swift:
-    :branch: remoteCommandsFix
-    :git: https://github.com/tealium/tealium-swift.git
   TealiumWrapperCocoapods:
     :path: "../"
 
-CHECKOUT OPTIONS:
-  tealium-swift:
-    :commit: a154832962dd0a23ef102b9e6bd11f8de39cdc65
-    :git: https://github.com/tealium/tealium-swift.git
-
 SPEC CHECKSUMS:
-  tealium-swift: bb1aa676219e6b6e635b39f83ec5587996c55d04
+  tealium-swift: 1e06aa9071e84086360d407dc4687906dd759542
   TealiumWrapperCocoapods: 9c67ceb8194dea1d5faedb9d5fd987c00d98b4d8
 
-PODFILE CHECKSUM: d9e5c3276c911e29664283c0c2fd19ec14767b24
+PODFILE CHECKSUM: 6800a209572ea02ecb7c072207c80a86f29098e5
 
 COCOAPODS: 1.11.2
