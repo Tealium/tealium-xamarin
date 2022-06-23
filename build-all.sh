@@ -16,7 +16,7 @@ nuget=Tealium.Xamarin.NuGet
 
 firebase_common=Tealium.RemoteCommands.Firebase.Common
 firebase_ios=Tealium.RemoteCommands.Firebase.iOS
-firebase_droid=Tealium.RemoteCommands.Firebase.Android
+firebase_droid=Tealium.RemoteCommands.Firebase.Droid
 
 #Project filenames for cleaning/building
 proj_common=APIs/$common/$common.csproj
