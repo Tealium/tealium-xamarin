@@ -17,9 +17,6 @@
     <!-- Insert within the <metadata> element -->
     <dependencies>
         <group targetFramework="MonoAndroid5.0">
-            <dependency id="Xamarin.Kotlin.StdLib" version="[1.5,2.0)" />
-            <dependency id="Xamarin.KotlinX.Coroutines.Core" version="[1.5,2.0)" />
-            <dependency id="Xamarin.KotlinX.Coroutines.Android" version="[1.5,2.0)" />
             <dependency id="Xamarin.Firebase.Analytics" version="[120.0,121.0)"/>
             <dependency id="Tealium.Xamarin" version="[2.0.1,3.0)" />
         </group>
