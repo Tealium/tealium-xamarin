@@ -153,6 +153,9 @@
     <PackageReference Include="Xamarin.Firebase.iOS.Core">
       <Version>8.10.0.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Build.Download">
+      <Version>0.11.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TealiumXamarinExample\TealiumXamarinExample.csproj">

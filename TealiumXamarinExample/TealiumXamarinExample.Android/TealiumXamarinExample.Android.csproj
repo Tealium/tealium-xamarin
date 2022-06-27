@@ -76,6 +76,9 @@
     <PackageReference Include="xunit.runner.devices">
       <Version>2.5.25</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Analytics">
+      <Version>120.0.1.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -120,15 +123,12 @@
       <Project>{7A094B0E-8BAE-4EC5-8164-3E8B66B335A1}</Project>
       <Name>Tealium.Droid</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\APIs\Tealium.Platform.Droid\Tealium.Platform.Droid.csproj">
-      <Project>{18E57B5C-52CD-439A-ACF8-9ABBB2110037}</Project>
-      <Name>Tealium.Platform.Droid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Droid\Tealium.RemoteCommands.Firebase.Droid.csproj">
-      <Name>Tealium.RemoteCommands.Firebase.Droid</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Common\Tealium.RemoteCommands.Firebase.Common.csproj">
       <Name>Tealium.RemoteCommands.Firebase.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Integrations\Firebase\Tealium.RemoteCommands.Firebase.Droid\Tealium.RemoteCommands.Firebase.Droid.csproj">
+      <Project>{81FB4FA4-13EE-47D5-9290-E4A00FC2F7D5}</Project>
+      <Name>Tealium.RemoteCommands.Firebase.Droid</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
