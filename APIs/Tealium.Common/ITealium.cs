@@ -80,8 +80,20 @@ namespace Tealium
         /// <summary>
         /// Removes a previously added callback to handle the updates to the Visitor Profile
         /// </summary>
-        /// <param name="callback">Action to execute when the visitor is updated</param>
+        /// <param name="key">The key returned when adding the listener</param>
         void RemoveVisitorServiceListener(AnyCollectionKey key);
+
+        /// <summary>
+        /// Adds a callback to handle the updates to the Visitor ID
+        /// </summary>
+        /// <param name="callback">Action to execute when the visitor is updated</param>
+        public AnyCollectionKey AddVisitorIdListener(Action<string> callback);
+
+        /// <summary>
+        /// Removes a previously added callback to handle the updates to the Visitor ID
+        /// </summary>
+        /// <param name="key">The key returned when adding the listener</param>
+        public void RemoveVisitorIdListener(AnyCollectionKey key);
 
         /// <summary>
         /// Adds a callback to handle expiration of consent.
@@ -92,7 +104,7 @@ namespace Tealium
         /// <summary>
         /// Removes a previously added a callback to handle expiration of consent.
         /// </summary>
-        /// <param name="callback">Action to execute when consent has expired</param>
+        /// <param name="key">The key returned when adding the listener</param>
         void RemoveConsentExpiryListener(AnyCollectionKey key);
 
 

@@ -1,22 +1,22 @@
 PODS:
-  - tealium-swift/Collect (2.6.5):
+  - tealium-swift/Collect (2.8.2):
     - tealium-swift/Core
-  - tealium-swift/Core (2.6.5)
-  - tealium-swift/Lifecycle (2.6.5):
+  - tealium-swift/Core (2.8.2)
+  - tealium-swift/Lifecycle (2.8.2):
     - tealium-swift/Core
-  - tealium-swift/RemoteCommands (2.6.5):
+  - tealium-swift/RemoteCommands (2.8.2):
     - tealium-swift/Core
-  - tealium-swift/TagManagement (2.6.5):
+  - tealium-swift/TagManagement (2.8.2):
     - tealium-swift/Core
-  - tealium-swift/VisitorService (2.6.5):
+  - tealium-swift/VisitorService (2.8.2):
     - tealium-swift/Core
   - TealiumWrapperCocoapods (0.1.0):
-    - tealium-swift/Collect (~> 2.6)
-    - tealium-swift/Core (~> 2.6)
-    - tealium-swift/Lifecycle (~> 2.6)
-    - tealium-swift/RemoteCommands (~> 2.6)
-    - tealium-swift/TagManagement (~> 2.6)
-    - tealium-swift/VisitorService (~> 2.6)
+    - tealium-swift/Collect (~> 2.8)
+    - tealium-swift/Core (~> 2.8)
+    - tealium-swift/Lifecycle (~> 2.8)
+    - tealium-swift/RemoteCommands (~> 2.8)
+    - tealium-swift/TagManagement (~> 2.8)
+    - tealium-swift/VisitorService (~> 2.8)
 
 DEPENDENCIES:
   - TealiumWrapperCocoapods (from `../`)
@@ -30,8 +30,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  tealium-swift: 1e06aa9071e84086360d407dc4687906dd759542
-  TealiumWrapperCocoapods: 9c67ceb8194dea1d5faedb9d5fd987c00d98b4d8
+  tealium-swift: aa249f29ee10924c1cb373c5313e91a99276bfe6
+  TealiumWrapperCocoapods: a7f9ad8285314c579ef6b3618ce4a67b68eeaff0
 
 PODFILE CHECKSUM: 6800a209572ea02ecb7c072207c80a86f29098e5
 

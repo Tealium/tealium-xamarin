@@ -291,7 +291,7 @@ namespace Tealium.iOS
                                 listener.Invoke(new VisitorProfileIOS(profile));
                             }
                         }
-                        
+
                     };
                 }
                 key = visitorServiceListeners.Add(callback);
@@ -308,6 +308,52 @@ namespace Tealium.iOS
             lock (visitorServiceSync)
             {
                 _ = visitorServiceListeners.Remove(key);
+            }
+        }
+
+        readonly object visitorIdSync = new object();
+
+        KeyedCollection<Action<string>> visitorIdListeners;
+
+        public CollectionSpecificKey<Action<string>> AddVisitorIdListener(Action<string> callback)
+        {
+            if (disposedValue)
+            {
+                return null;
+            }
+            CollectionSpecificKey<Action<string>> key;
+            lock (visitorIdSync)
+            {
+                if (visitorIdListeners == null)
+                {
+                    visitorIdListeners = new KeyedCollection<Action<string>>();
+                    nativeTealium.OnVisitorIdUpdate = (visitorId) =>
+                    {
+                        lock (visitorIdSync)
+                        {
+                            foreach (var key in visitorIdListeners.Keys)
+                            {
+                                Action<string> listener = visitorIdListeners.Get(key);
+                                listener.Invoke(visitorId);
+                            }
+                        }
+
+                    };
+                }
+                key = visitorIdListeners.Add(callback);
+            }
+            return key;
+        }
+
+        public void RemoveVisitorIdListener(CollectionSpecificKey<Action<string>> key)
+        {
+            if (disposedValue)
+            {
+                return;
+            }
+            lock (visitorIdSync)
+            {
+                _ = visitorIdListeners.Remove(key);
             }
         }
 
@@ -373,6 +419,18 @@ namespace Tealium.iOS
         {
             RemoveVisitorServiceListener((CollectionSpecificKey<Action<IVisitorProfile>>)key);
         }
+
+
+        AnyCollectionKey ITealium.AddVisitorIdListener(Action<string> callback)
+        {
+            return AddVisitorIdListener(callback);
+        }
+
+        void ITealium.RemoveVisitorIdListener(AnyCollectionKey key)
+        {
+            RemoveVisitorIdListener((CollectionSpecificKey<Action<string>>)key);
+        }
+
 
         AnyCollectionKey ITealium.AddConsentExpiryListener(Action callback)
         {

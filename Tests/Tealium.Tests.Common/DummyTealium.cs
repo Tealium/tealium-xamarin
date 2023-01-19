@@ -101,5 +101,15 @@ namespace Tealium.Tests.Common
         {
             throw new NotImplementedException();
         }
+
+        AnyCollectionKey ITealium.AddVisitorIdListener(Action<string> callback)
+        {
+            throw new NotImplementedException();
+        }
+
+        void ITealium.RemoveVisitorIdListener(AnyCollectionKey key)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
