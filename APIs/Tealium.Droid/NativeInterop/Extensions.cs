@@ -100,6 +100,11 @@ namespace Tealium.Droid.NativeInterop.Extensions
                 NativeConsent.TealiumConfigConsentManagerKt.SetConsentManagerLoggingEnabled(nativeConfig, new Java.Lang.Boolean((bool)config.ConsentLoggingEnabled));
             }
 
+            if (config.OverrideConsentCategoriesKey != null)
+            {
+                NativeConsent.TealiumConfigConsentManagerKt.SetOverrideConsentCategoriesKey(nativeConfig, config.OverrideConsentCategoriesKey);
+            }
+
             var policy = config.ConsentPolicy?.ToNativePolicy();
             if (policy != null)
             {

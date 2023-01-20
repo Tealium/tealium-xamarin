@@ -158,6 +158,14 @@ public class TealiumWrapper: NSObject {
         tealium.remoteCommands?.removeAll()
     }
     
+    @objc public func resetVisitorId() {
+        tealium.resetVisitorId()
+    }
+
+    @objc public func clearStoredVisitorIds() {
+        tealium.clearStoredVisitorIds()
+    }
+    
     deinit {
         // This is just added to allow for tealium instance to be deallocated
         // Instance manager will be entirely written in the Xamarin project

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Tealium.iOS.NativeInterop.Extensions;
 using Tealium.Platform.iOS;
 
-// TODO: add synchronization and dispose checks
 namespace Tealium.iOS
 {
     /// <summary>
@@ -440,6 +439,16 @@ namespace Tealium.iOS
         void ITealium.RemoveConsentExpiryListener(AnyCollectionKey key)
         {
             RemoveConsentExpiryListener((CollectionSpecificKey<Action>)key);
+        }
+
+        void ITealium.ClearStoredVisitorIds()
+        {
+            nativeTealium.ClearStoredVisitorIds();
+        }
+
+        void ITealium.ResetVisitorId()
+        {
+            nativeTealium.ResetVisitorId();
         }
 
         #endregion Dispose

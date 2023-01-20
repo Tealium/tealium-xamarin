@@ -590,4 +590,13 @@ public class TealiumConfigWrapper: NSObject {
             config.visitorIdentityKey = newValue
         }
     }
+    
+    @objc public var overrideConsentCategoriesKey: String? {
+        get {
+            config.overrideConsentCategoriesKey
+        }
+        set {
+            config.overrideConsentCategoriesKey = newValue
+        }
+    }
 }

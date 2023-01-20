@@ -511,6 +511,16 @@ namespace Tealium.Droid
             RemoveConsentExpiryListener((CollectionSpecificKey<NativeConsentExpiryListener>)key);
         }
 
+        public void ClearStoredVisitorIds()
+        {
+            tealium.ClearStoredVisitorIds();
+        }
+
+        public void ResetVisitorId()
+        {
+            tealium.ResetVisitorId();
+        }
+
         #endregion Helper methods
     }
 }

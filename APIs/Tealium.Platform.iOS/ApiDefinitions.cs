@@ -436,6 +436,10 @@ namespace Tealium.Platform.iOS
 		// @property (copy, nonatomic) NSString * _Nullable visitorIdentityKey;
 		[NullAllowed, Export ("visitorIdentityKey")]
 		string VisitorIdentityKey { get; set; }
+
+		// @property (copy, nonatomic) NSString * _Nullable overrideConsentCategoriesKey;
+		[NullAllowed, Export ("overrideConsentCategoriesKey")]
+		string OverrideConsentCategoriesKey { get; set; }
 	}
 
 	// @interface TealiumCurrentVisitProfileWrapper : NSObject
@@ -675,5 +679,13 @@ namespace Tealium.Platform.iOS
 		// -(void)destroy;
 		[Export ("destroy")]
 		void Destroy ();
+
+		// -(void)resetVisitorId;
+		[Export ("resetVisitorId")]
+		void ResetVisitorId ();
+
+		// -(void)clearStoredVisitorIds;
+		[Export ("clearStoredVisitorIds")]
+		void ClearStoredVisitorIds ();
 	}
 }

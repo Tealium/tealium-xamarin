@@ -77,6 +77,11 @@ namespace Tealium.iOS.NativeInterop.Extensions
                 nativeConfig.ConsentLoggingEnabled = (bool)config.ConsentLoggingEnabled;
             }
 
+            if (config.OverrideConsentCategoriesKey != null)
+            {
+                nativeConfig.OverrideConsentCategoriesKey = config.OverrideConsentCategoriesKey;
+            }
+
             var policy = config.ConsentPolicy?.ToNativePolicy();
             if (policy != null)
             {

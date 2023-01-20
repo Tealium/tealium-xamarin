@@ -118,6 +118,11 @@ namespace Tealium
         public ConsentExpiry? ConsentExpiry { get; set; }
 
         /// <summary>
+        /// Allows the Consent Categories key to be overridden
+        /// </summary>
+        public string? OverrideConsentCategoriesKey { get; set; }
+
+        /// <summary>
         /// Enables or disables automated tracking of application lifecycle
         /// events (launch, sleep, wake)
         /// </summary>
