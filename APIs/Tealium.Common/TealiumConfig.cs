@@ -141,6 +141,16 @@ namespace Tealium
         public bool? VisitorServiceEnabled { get; set; }
 
         /// <summary>
+        /// A key used to inspect the data layer for a stitching key to be used to store the current visitorId with.
+        ///
+        /// The current visitorId is stored with this key so if this key changes, we automatically reset it to a new value, and if it comes back to the old value we have a copy and don't have to generate a new one.
+        /// Something like an email adress, or a unique identifier of the current user should be the field to which this key is pointing to.
+        ///
+        /// Note that the key is hashed and not saved in plain text when stored on disk.
+        /// </summary>
+        public string? VisitorIdentityKey { get; set; }
+
+        /// <summary>
         /// Sets a list of IRemoteCommand objects to load on initialization.
         /// </summary>
         public IList<IRemoteCommand>? RemoteCommands { get; set; }
@@ -181,6 +191,8 @@ namespace Tealium
         /// <param name="useRemoteLibrarySettings">Optional - enables/disbles fetching remote library settings</param>
         /// <param name="visitorServiceEnabled">Optional - enables/disables the visitor service</param>
         /// <param name="remoteCommands">Optional - collection of <see cref="IRemoteCommand"/> objects</param>
+        /// <param name="overrideConsentCategoriesKey">Optional - Overrides the consent categories key</param>
+        /// <param name="overrideConsentCategoriesKey">Optional - Overrides the consent categories key</param>
         public TealiumConfig(
             string account,
             string profile,
@@ -206,7 +218,9 @@ namespace Tealium
             bool? lifecycleAutotrackingEnabled = null,
             bool? useRemoteLibrarySettings = null,
             bool? visitorServiceEnabled = null,
-            List<IRemoteCommand>? remoteCommands = null
+            List<IRemoteCommand>? remoteCommands = null,
+            string? visitorIdentityKey = null,
+            string? overrideConsentCategoriesKey = null
      )
         {
             Account = account;
@@ -223,6 +237,7 @@ namespace Tealium
             OverrideLibrarySettingsURL = overrideLibrarySettingsURL;
             OverrideTagManagementURL = overrideTagManagementURL;
             DeepLinkTrackingEnabled = deepLinkTrackingEnabled;
+            OverrideConsentCategoriesKey = overrideConsentCategoriesKey;
             QrTraceEnabled = qrTraceEnabled;
             LogLevel = logLevel;
             ConsentLoggingEnabled = consentLoggingEnabled;
@@ -232,6 +247,7 @@ namespace Tealium
             UseRemoteLibrarySettings = useRemoteLibrarySettings;
             VisitorServiceEnabled = visitorServiceEnabled;
             RemoteCommands = remoteCommands;
+            VisitorIdentityKey = visitorIdentityKey;
         }
 
     }

@@ -105,6 +105,11 @@ namespace Tealium.Droid.NativeInterop.Extensions
                 NativeConsent.TealiumConfigConsentManagerKt.SetOverrideConsentCategoriesKey(nativeConfig, config.OverrideConsentCategoriesKey);
             }
 
+            if (config.VisitorIdentityKey != null)
+            {
+                nativeConfig.VisitorIdentityKey = config.VisitorIdentityKey;
+            }
+
             var policy = config.ConsentPolicy?.ToNativePolicy();
             if (policy != null)
             {

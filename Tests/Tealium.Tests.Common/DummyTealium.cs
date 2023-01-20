@@ -111,5 +111,15 @@ namespace Tealium.Tests.Common
         {
             throw new NotImplementedException();
         }
+
+        void ITealium.ClearStoredVisitorIds()
+        {
+            throw new NotImplementedException();
+        }
+
+        void ITealium.ResetVisitorId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -37,7 +37,9 @@ namespace Tealium.Tests.Droid.NativeInteropTests
                     new ConsentManager.ConsentExpiry(10, TimeUnit.Days),
                     true,
                     true,
-                    true
+                    true,
+                    null,
+                    "overrideConsentCategoriesKey"
                 );
 
             TealiumNative.TealiumConfig nativeConfig = config.ToNativeConfig(MainActivity.CurrentApplication);
@@ -86,6 +88,7 @@ namespace Tealium.Tests.Droid.NativeInteropTests
             var consentExpiry = TealiumNative.Consent.TealiumConfigConsentManagerKt.GetConsentExpiry(nativeConfig);
             Assert.AreEqual(10, consentExpiry.Time);
             Assert.AreEqual(Java.Util.Concurrent.TimeUnit.Days, consentExpiry.Unit);
+            Assert.AreEqual("overrideConsentCategoriesKey", nativeConfig.OverrideConsentCategoriesKey);
         }
 
         [Test]

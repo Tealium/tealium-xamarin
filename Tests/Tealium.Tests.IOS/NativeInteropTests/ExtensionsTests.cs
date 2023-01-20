@@ -40,7 +40,9 @@ namespace Tealium.Tests.iOS.NativeInteropTests
                     new ConsentManager.ConsentExpiry(10, TimeUnit.Days),
                     true,
                     true,
-                    true
+                    true,
+                    null,
+                    "overrideConsentCategoriesKey"
                 );
 
             TealiumConfigWrapper nativeConfig = config.ToNativeConfig();
@@ -86,6 +88,7 @@ namespace Tealium.Tests.iOS.NativeInteropTests
             var consentExpiry = nativeConfig.ConsentExpiry;
             Assert.AreEqual(10, consentExpiry.Time);
             Assert.AreEqual(TimeUnitWrapper.Days, consentExpiry.Unit);
+            Assert.AreEqual("overrideConsentCategoriesKey", nativeConfig.OverrideConsentCategoriesKey);
         }
 
         [Test]
