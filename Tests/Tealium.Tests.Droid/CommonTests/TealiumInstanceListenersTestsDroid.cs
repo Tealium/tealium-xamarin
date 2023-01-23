@@ -79,7 +79,7 @@ namespace Tealium.Tests.Droid.CommonTests
 
             });
             Assert.DoesNotThrow(() => tealDroid.RemoveVisitorIdListener(specificKey));
-            Assert.Throws(typeof(InvalidCastException), () => tealDroid.RemoveVisitorIdListener((CollectionSpecificKey<Tealium.Droid.NativeVisitorIdListener>)(object)specificKey));
+            Assert.Throws(typeof(InvalidCastException), () => tealDroid.RemoveConsentExpiryListener((CollectionSpecificKey<NativeConsentExpiryListener>)(object)specificKey));
         }
 
         [Test]
@@ -91,8 +91,8 @@ namespace Tealium.Tests.Droid.CommonTests
             {
 
             });
-            Assert.DoesNotThrow(() => tealDroid.RemoveVisitorIdListener(specificKey));
-            Assert.Throws(typeof(InvalidCastException), () => tealDroid.RemoveVisitorIdListener(specificKey));
+            Assert.DoesNotThrow(() => tealium.RemoveVisitorIdListener(specificKey));
+            Assert.Throws(typeof(InvalidCastException), () => tealium.RemoveConsentExpiryListener(specificKey));
         }
     }
 }

@@ -39,6 +39,7 @@ namespace Tealium.Tests.Droid.NativeInteropTests
                     true,
                     true,
                     null,
+                    "visitorIdentityKey",
                     "overrideConsentCategoriesKey"
                 );
 
@@ -70,6 +71,7 @@ namespace Tealium.Tests.Droid.NativeInteropTests
             Assert.True(nativeConfig.QrTraceEnabled);
             Assert.AreEqual("overrideLibrarySettingsUrl", nativeConfig.OverrideLibrarySettingsUrl);
             Assert.True(nativeConfig.UseRemoteLibrarySettings);
+            Assert.AreEqual("visitorIdentityKey", nativeConfig.VisitorIdentityKey);
 
             // Lifecycle
             Assert.True((bool)Com.Tealium.Lifecycle.TealiumConfigLifecycleKt.IsAutoTrackingEnabled(nativeConfig));
@@ -88,7 +90,7 @@ namespace Tealium.Tests.Droid.NativeInteropTests
             var consentExpiry = TealiumNative.Consent.TealiumConfigConsentManagerKt.GetConsentExpiry(nativeConfig);
             Assert.AreEqual(10, consentExpiry.Time);
             Assert.AreEqual(Java.Util.Concurrent.TimeUnit.Days, consentExpiry.Unit);
-            Assert.AreEqual("overrideConsentCategoriesKey", nativeConfig.OverrideConsentCategoriesKey);
+            Assert.AreEqual("overrideConsentCategoriesKey", TealiumNative.Consent.TealiumConfigConsentManagerKt.GetOverrideConsentCategoriesKey(nativeConfig));
         }
 
         [Test]

@@ -42,8 +42,8 @@ namespace Tealium.Tests.iOS.NativeInteropTests
                     true,
                     true,
                     null,
-                    "overrideConsentCategoriesKey"
-                );
+                    "visitorIdentityKey",
+                    "overrideConsentCategoriesKey");
 
             TealiumConfigWrapper nativeConfig = config.ToNativeConfig();
 
@@ -70,6 +70,8 @@ namespace Tealium.Tests.iOS.NativeInteropTests
             Assert.True(nativeConfig.QrTraceEnabled);
             Assert.AreEqual("overrideLibrarySettingsUrl", nativeConfig.PublishSettingsURL);
             Assert.True(nativeConfig.ShouldUseRemotePublishSettings);
+            Assert.AreEqual("visitorIdentityKey", nativeConfig.VisitorIdentityKey);
+            
 
             // Lifecycle
             Assert.True((bool)nativeConfig.LifecycleAutoTrackingEnabled);
