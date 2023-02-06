@@ -53,8 +53,6 @@ namespace TealiumXamarinExample.ViewModels
             Helper.DefaultInstance.ResetVisitorId();
         }
 
-
-
         public string Email
         {
             get => email;
@@ -66,8 +64,5 @@ namespace TealiumXamarinExample.ViewModels
             get => visitorId;
             set => SetProperty(ref visitorId, value);
         }
-
-
-
     }
 }

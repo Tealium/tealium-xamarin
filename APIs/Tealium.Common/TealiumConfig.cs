@@ -191,7 +191,7 @@ namespace Tealium
         /// <param name="useRemoteLibrarySettings">Optional - enables/disbles fetching remote library settings</param>
         /// <param name="visitorServiceEnabled">Optional - enables/disables the visitor service</param>
         /// <param name="remoteCommands">Optional - collection of <see cref="IRemoteCommand"/> objects</param>
-        /// <param name="overrideConsentCategoriesKey">Optional - Overrides the consent categories key</param>
+        /// <param name="visitorIdentityKey">Optional - the data layer key in which the application will store the identifier for the user, used for visitor switching</param>
         /// <param name="overrideConsentCategoriesKey">Optional - Overrides the consent categories key</param>
         public TealiumConfig(
             string account,
